@@ -4,7 +4,7 @@
 !.config/davmail/properties
 !.config/mr
 !.config/mr/config.d
-!.config/mr/config.d/mail.vcsh
+!.config/mr/config.d/mail
 !.gitignore.d
 !.gitignore.d/mail
 !.mailcap
