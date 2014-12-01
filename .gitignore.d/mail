@@ -18,4 +18,6 @@
 !.offlineimap
 !.offlineimap/offlineimap.py
 !.offlineimaprc
+!.smd
+!.smd/config.*
 !.urlview

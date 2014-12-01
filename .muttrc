@@ -1,11 +1,10 @@
 # appearance
-source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
-
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
-set folder = "~/Mail
-set spoolfile = "+INBOX"
-set postponed = "+Drafts"
+set folder = "~/.maildir/"
+#set spoolfile = "+INBOX"
+#set postponed = "+Drafts"
 
 # save of sent handled in sendmail.sh
 unset record 
@@ -72,7 +71,7 @@ message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-tradit
 # account specific compose
 # FIXME: not totally smooth
 # FIXME: reply hook doesn't work if there are other recipients...
-source ~/.mutt/accounts/cranfield.rc
+#source ~/.mutt/accounts/cranfield.rc
 bind index,pager m noop
 macro index,pager Af "<enter-command>source ~/.mutt/accounts/fortawesome.rc\n" "fortawesome"
 macro index,pager Ac "<enter-command>source ~/.mutt/accounts/cranfield.rc\n" "cranfield"
