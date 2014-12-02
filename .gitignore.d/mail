@@ -1,7 +1,5 @@
 *
 !.config
-!.config/davmail
-!.config/davmail/properties
 !.config/mr
 !.config/mr/config.d
 !.config/mr/config.d/mail
