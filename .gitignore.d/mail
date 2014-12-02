@@ -8,6 +8,7 @@
 !.local
 !.local/bin
 !.local/bin/mailsync
+!.local/bin/msmtp-*.sh
 !.mailcap
 !.mairixrc
 !.mbsyncrc

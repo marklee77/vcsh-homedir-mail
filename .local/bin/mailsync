@@ -17,5 +17,7 @@ else
     exit 1
 fi
 
+msmtp-runqueue.sh
+# test that send was successful?
 smd-pull
 #smd-push
