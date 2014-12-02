@@ -9,18 +9,19 @@ set spoolfile = "~/.maildir"
 set record = "+.Sent"
 set postponed = "+.Drafts"
 
-#mailboxes ! + `\
-#for file in ~/.maildir/.*; do \
-#  box=$(basename "$file"); \
-#  if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
-#      -a ! "$box" = '.subscriptions' ]; then \
-#    echo -n "\"+$box\" "; \
-#  fi; \
-#done`
-#macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-#macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+mailboxes ! + `\
+for file in ~/.maildir/.*; do \
+box=$(basename "$file"); \
+if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+   -a ! "$box" = '.subscriptions' ]; then \
+ echo -n "\"+$box\" "; \
+fi; \
+done`
 
-# set header_cache = ~/.mutt/cache/
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+set header_cache = ~/.mutt/cache/
 
 set include = yes
 set postpone = ask-yes
