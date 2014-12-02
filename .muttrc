@@ -6,9 +6,9 @@ set mbox_type = maildir
 set mbox = "~/.maildir"
 set folder = "~/.maildir"
 set mask = ".*"
+set spoolfile = "~/.maildir/"
 set record = "+.Sent"
 set postponed = "+.Drafts"
-set spoolfile = "~/.maildir/"
 
 mailboxes ! + `\
 for file in ~/.maildir/.*; do \
