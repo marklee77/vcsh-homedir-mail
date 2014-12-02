@@ -24,7 +24,8 @@ macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
 # sendmail
-set sendmail = ~/Programs/bin/sendmail.sh
+#set sendmail = ~/Programs/bin/sendmail.sh
+set sendmail = msmtp 
 set use_from = yes
 set envelope_from = yes
 set user_agent = yes
