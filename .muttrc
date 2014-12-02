@@ -2,12 +2,13 @@
 source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
-set mbox_type=maildir
+set mbox_type = maildir
+set mbox = "~/.maildir"
 set folder = "~/.maildir"
-set mask = "^\\.[^.]"
-set spoolfile = "~/.maildir"
+set mask = ".*"
 set record = "+.Sent"
 set postponed = "+.Drafts"
+set spoolfile = "~/.maildir/"
 
 mailboxes ! + `\
 for file in ~/.maildir/.*; do \
