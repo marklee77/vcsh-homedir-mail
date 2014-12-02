@@ -59,9 +59,9 @@ hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
-#set display_filter = "fold -sw 80"
-#macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
-#macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
+set display_filter = "fold -sw 80"
+macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
+macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
 # address book
 set query_command = 'addr_lookup.sh %s'
@@ -87,24 +87,17 @@ set crypt_replysignencrypted = yes
 set crypt_verify_sig = yes
 message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-traditional-pgp'
 
-# account specific compose
-# FIXME: not totally smooth
-# FIXME: reply hook doesn't work if there are other recipients...
-#source ~/.mutt/accounts/cranfield.rc
 bind index,pager m noop
-macro index,pager Af "<enter-command>source ~/.mutt/accounts/fortawesome.rc\n" "fortawesome"
-macro index,pager Ac "<enter-command>source ~/.mutt/accounts/cranfield.rc\n" "cranfield"
-macro index,pager mf "<enter-command>source ~/.mutt/accounts/fortawesome.rc\n<mail>" "fortawesome compose"
-macro index,pager mc "<enter-command>source ~/.mutt/accounts/cranfield.rc\n<mail>" "cranfield compose"
-reply-hook "~t m.stillwell@cranfield.ac.uk" "source ~/.mutt/accounts/cranfield.rc"
-reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
+#reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
+#reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
+#reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/stillwell.rc"
 
-macro index       gi "<change-folder>+INBOX<enter>" "go to inbox"
+macro index       gi "<change-folder>+<enter>" "go to inbox"
 macro index       gp "<change-folder>+Pending<enter>" "go to pending"
 macro index       gd "<change-folder>+Drafts<enter>" "go to drafts"
 macro index       gs "<change-folder>+Search<enter>" "go to cached search results"
 macro index,pager d "<enter-command>unset trash\n<delete-message>" "archive message"
 macro index,pager S "<enter-command>set trash=+Spam\n<delete-message>" "message to spam"
-macro index,pager Mi "<copy-message>+INBOX<enter>" "copy to inbox"
+macro index,pager Mi "<copy-message>+<enter>" "copy to inbox"
 macro index,pager Mp "<copy-message>+Pending<enter>" "copy to pending"
 macro index,pager / "<enter-command>unset wait_key<enter><shell-escape>rlwrap -H ~/.mutt/search_history -s 100 -P 'd:1y- ' /bin/bash -c \"read -p 'search query: ' QUERY; mairix -t \\\${QUERY}\"<enter><change-folder-readonly>+Search<enter>" "notmuch: search mail"
