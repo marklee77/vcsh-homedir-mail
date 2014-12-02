@@ -1,0 +1,21 @@
+#!/bin/bash
+SCRIPTNAME="$(basename $0)"
+LOCKDIR="${HOME}/.local/var/lock/${SCRIPTNAME}"
+PIDFILE="${LOCKDIR}/PID"
+if mkdir ${LOCKDIR} &> /dev/null; then
+    trap "rm -rf ${LOCKDIR}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+    echo "$$" > ${PIDFILE}
+else
+    OTHERPID=$(cat ${PIDFILE})
+    OTHERNAME=$(basename $(ps aux | perl -ane "print \"\$F[11]\\n\" if (\$F[1] == ${OTHERPID});" 2>/dev/null) 2>/dev/null)
+    if [ -n "${OTHERPID}" ] && [ "${OTHERNAME}" != "${SCRIPTNAME}" ]; then
+        # lock is stale, remove and try again...
+        rm -rf ${LOCKDIR}
+        exec "$0" "$@"
+    fi
+    echo "another instance of ${SCRIPTNAME} is currently running." >&2
+    exit 1
+fi
+
+smd-pull
+smd-push

@@ -5,6 +5,9 @@
 !.config/mr/config.d/mail
 !.gitignore.d
 !.gitignore.d/mail
+!.local
+!.local/bin
+!.local/bin/mailsync
 !.mailcap
 !.mairixrc
 !.mbsyncrc

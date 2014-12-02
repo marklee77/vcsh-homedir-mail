@@ -54,7 +54,7 @@ hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
-set display_filter = "fold -sw 80"
+#set display_filter = "fold -sw 80"
 macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
