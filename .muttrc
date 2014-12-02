@@ -3,13 +3,28 @@ source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
 set mbox_type=maildir
-set folder = "~/.maildir/"
+set folder = "~/.maildir"
 set mask = "^\\.[^.]"
-set spoolfile = "~/.maildir/"
+set spoolfile = "~/.maildir"
 set record = "+.Sent"
 set postponed = "+.Drafts"
 
+#mailboxes ! + `\
+#for file in ~/.maildir/.*; do \
+#  box=$(basename "$file"); \
+#  if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
+#      -a ! "$box" = '.subscriptions' ]; then \
+#    echo -n "\"+$box\" "; \
+#  fi; \
+#done`
+#macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+#macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
 # set header_cache = ~/.mutt/cache/
+
+set include = yes
+set postpone = ask-yes
+set print = ask-yes
 
 # sendmail
 set sendmail = ~/Programs/bin/sendmail.sh
