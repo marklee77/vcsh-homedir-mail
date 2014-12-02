@@ -2,12 +2,12 @@
 source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
+set mbox_type=maildir
 set folder = "~/.maildir/"
-#set spoolfile = "."
-set postponed = ".Drafts"
-
-# save of sent handled in sendmail.sh
-unset record 
+set mask = "^\\.[^.]"
+set spoolfile = "~/.maildir/"
+set record = "+.Sent"
+set postponed = "+.Drafts"
 
 # set header_cache = ~/.mutt/cache/
 
