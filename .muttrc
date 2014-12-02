@@ -83,7 +83,8 @@ set crypt_verify_sig = yes
 message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-traditional-pgp'
 
 # multi-account
-bind index,pager m noop
+set from = "Mark Stillwell <mark@stillwell.me>"
+#bind index,pager m noop
 #reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
 #reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
 #reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/stillwell.rc"
