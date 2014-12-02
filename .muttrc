@@ -3,6 +3,7 @@ source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
 set mbox_type = maildir
+set header_cache = ~/.mutt/cache/
 set mbox = "~/.maildir"
 set folder = "~/.maildir"
 set mask = ".*"
@@ -21,12 +22,6 @@ done`
 
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-
-set header_cache = ~/.mutt/cache/
-
-set include = yes
-set postpone = ask-yes
-set print = ask-yes
 
 # sendmail
 set sendmail = ~/Programs/bin/sendmail.sh
@@ -70,13 +65,13 @@ source ~/.mutt/aliases
 
 # compose options
 set edit_headers = yes
-#set editor_headers = "From: To: Cc: Bcc: Subject: Attach:"
 set editor = "vim"
 set autoedit = yes
 set include = yes
 bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop 
+set postpone = ask-yes
 
 # encryption
 source ~/.mutt/smime.rc
@@ -87,17 +82,22 @@ set crypt_replysignencrypted = yes
 set crypt_verify_sig = yes
 message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-traditional-pgp'
 
+# multi-account
 bind index,pager m noop
 #reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
 #reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
 #reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/stillwell.rc"
 
-macro index       gi "<change-folder>+<enter>" "go to inbox"
-macro index       gp "<change-folder>+Pending<enter>" "go to pending"
-macro index       gd "<change-folder>+Drafts<enter>" "go to drafts"
-macro index       gs "<change-folder>+Search<enter>" "go to cached search results"
+# archive and search
 macro index,pager d "<enter-command>unset trash\n<delete-message>" "archive message"
 macro index,pager S "<enter-command>set trash=+Spam\n<delete-message>" "message to spam"
 macro index,pager Mi "<copy-message>+<enter>" "copy to inbox"
 macro index,pager Mp "<copy-message>+Pending<enter>" "copy to pending"
 macro index,pager / "<enter-command>unset wait_key<enter><shell-escape>rlwrap -H ~/.mutt/search_history -s 100 -P 'd:1y- ' /bin/bash -c \"read -p 'search query: ' QUERY; mairix -t \\\${QUERY}\"<enter><change-folder-readonly>+Search<enter>" "notmuch: search mail"
+
+# movement macros
+macro index       gi "<change-folder>+<enter>" "go to inbox"
+macro index       gp "<change-folder>+Pending<enter>" "go to pending"
+macro index       gd "<change-folder>+Drafts<enter>" "go to drafts"
+macro index       gs "<change-folder>+Search<enter>" "go to cached search results"
+
