@@ -45,7 +45,7 @@ subscribe infra-songs--wp4@lists.gforge.inria.fr
 # index 
 set date_format = "%y-%m-%d"
 set index_format = "%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s"
-set sort = 'threads'
+set sort = threads
 set sort_aux = 'reverse-last-date-received'
 set collapse_unread = yes
 set auto_tag = yes
@@ -53,7 +53,7 @@ set mark_old = no
 folder-hook . 'exec collapse-all'
 
 # read options
-hdr_order Date From To Cc
+hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
