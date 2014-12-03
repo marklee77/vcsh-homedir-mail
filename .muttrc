@@ -93,7 +93,7 @@ set envelope_from = yes
 set user_agent = yes
 
 # archive and search
-macro index,pager d "<enter-command>set trash=+.Archive\n<delete-message>" "archive message"
+macro index,pager A "<save-message>=.Archive\n<enter>" "archive message"
 macro index,pager S "<enter-command>set trash=+.Spam\n<delete-message>" "message to spam"
 macro index,pager Mi "<copy-message>+<enter>" "copy to inbox"
 macro index,pager Mp "<copy-message>+Pending<enter>" "copy to pending"
