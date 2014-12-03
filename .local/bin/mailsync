@@ -17,9 +17,12 @@ else
     exit 1
 fi
 
-nm-online -x || exit 0
+if nm-online -x; then
+    msmtp-runqueue.sh 2>&1 >/dev/null
+    smd-pull 2>&1 >/dev/null
+    smd-push 2>&1 >/dev/null
+fi
 
-msmtp-runqueue.sh 2>&1 >/dev/null
-# test that send was successful?
-smd-pull
-smd-push
+notmuch new 2>&1 >/dev/null
+
+exit 0

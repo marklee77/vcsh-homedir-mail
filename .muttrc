@@ -97,7 +97,7 @@ macro index,pager d "<save-message>=.Archive\n<enter>" "archive message"
 macro index,pager S "<save-message>=.Spam\n<enter>" "message to spam"
 macro index,pager Mi "<copy-message>=<enter>" "copy to inbox"
 macro index,pager Mp "<copy-message>=.Pending<enter>" "copy to pending"
-#macro index,pager / "<enter-command>unset wait_key<enter><shell-escape>rlwrap -H ~/.mutt/search_history -s 100 -P 'd:1y- ' /bin/bash -c \"read -p 'search query: ' QUERY; mairix -t \\\${QUERY}\"<enter><change-folder-readonly>+Search<enter>" "notmuch: search mail"
+macro index,pager <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search<enter><change-folder-readonly>=.Search<enter>" "notmuch: search mail"
 
 # movement macros
 macro index       gi "<change-folder>+<enter>" "go to inbox"
