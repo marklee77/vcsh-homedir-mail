@@ -53,11 +53,11 @@ macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan'
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
 # multi-account
-set from = "Mark Stillwell <mark@stillwell.me>"
+source ~/.mutt/accounts/stillwell.rc
 #bind index,pager m noop
-#reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
-#reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
-#reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/stillwell.rc"
+reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
+reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
+reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.rc"
 
 # compose options
 set edit_headers = yes
@@ -98,7 +98,8 @@ macro index,pager / "<enter-command>unset wait_key<enter><shell-escape>rlwrap -H
 
 # movement macros
 macro index       gi "<change-folder>+<enter>" "go to inbox"
-macro index       gp "<change-folder>+Pending<enter>" "go to pending"
-macro index       gd "<change-folder>+Drafts<enter>" "go to drafts"
-macro index       gs "<change-folder>+Search<enter>" "go to cached search results"
+macro index       ga "<change-folder>+.Archive<enter>" "go to archive"
+macro index       gp "<change-folder>+.Pending<enter>" "go to pending"
+macro index       gd "<change-folder>+.Drafts<enter>" "go to drafts"
+macro index       gs "<change-folder>+.Search<enter>" "go to cached search results"
 

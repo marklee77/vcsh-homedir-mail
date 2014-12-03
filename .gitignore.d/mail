@@ -15,6 +15,7 @@
 !.msmtprc
 !.mutt
 !.mutt/*
+!.mutt/accounts/*
 !.muttrc
 !.notmuch-config
 !.offlineimap
