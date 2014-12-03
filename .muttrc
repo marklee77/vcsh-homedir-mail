@@ -49,7 +49,6 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
 #set display_filter = "fold -sw 80"
-
 macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
@@ -65,7 +64,7 @@ message-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.r
 
 # compose options
 set edit_headers = yes
-set editor = vim
+set editor = "vim"
 set autoedit = yes
 set include = yes
 bind editor <Tab> complete-query
@@ -94,11 +93,11 @@ set envelope_from = yes
 set user_agent = yes
 
 # archive and search
-macro index,pager d "<enter-command>unset trash\n<delete-message>" "archive message"
-macro index,pager S "<enter-command>set trash=+Spam\n<delete-message>" "message to spam"
+macro index,pager d "<enter-command>set trash=+.Archive\n<delete-message>" "archive message"
+macro index,pager S "<enter-command>set trash=+.Spam\n<delete-message>" "message to spam"
 macro index,pager Mi "<copy-message>+<enter>" "copy to inbox"
 macro index,pager Mp "<copy-message>+Pending<enter>" "copy to pending"
-macro index,pager / "<enter-command>unset wait_key<enter><shell-escape>rlwrap -H ~/.mutt/search_history -s 100 -P 'd:1y- ' /bin/bash -c \"read -p 'search query: ' QUERY; mairix -t \\\${QUERY}\"<enter><change-folder-readonly>+Search<enter>" "notmuch: search mail"
+#macro index,pager / "<enter-command>unset wait_key<enter><shell-escape>rlwrap -H ~/.mutt/search_history -s 100 -P 'd:1y- ' /bin/bash -c \"read -p 'search query: ' QUERY; mairix -t \\\${QUERY}\"<enter><change-folder-readonly>+Search<enter>" "notmuch: search mail"
 
 # movement macros
 macro index       gi "<change-folder>+<enter>" "go to inbox"
