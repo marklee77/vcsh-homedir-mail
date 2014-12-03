@@ -53,11 +53,14 @@ macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan'
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
 # multi-account
-macro index,pager m '<enter-command>source ~/.mutt/accounts/fortawesome.rc<enter><mail>'
-macro index,pager f '<enter-command>source ~/.mutt/accounts/fortawesome.rc<enter><forward>'
+source ~/.mutt/accounts/stillwell.rc
+macro index,pager m '<enter-command>source ~/.mutt/accounts/stillwell.rc<enter><mail>'
 reply-hook "~t .@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
+message-hook "~t .@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
 reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
+message-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
 reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.rc"
+message-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.rc"
 
 # compose options
 set edit_headers = yes
