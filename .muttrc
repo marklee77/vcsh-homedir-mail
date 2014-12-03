@@ -23,11 +23,15 @@ done`
 macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
-# sendmail
-set sendmail = msmtp-enqueue.sh
-set use_from = yes
-set envelope_from = yes
-set user_agent = yes
+# index 
+set date_format = "%y-%m-%d"
+set index_format = "%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s"
+set sort = threads
+set sort_aux = 'reverse-last-date-received'
+set collapse_unread = yes
+set auto_tag = yes
+set mark_old = no
+folder-hook . 'exec collapse-all'
 
 # addresses and mailing lists
 alternates mark@stillwell.me marklee@fortawesome.org 
@@ -39,16 +43,6 @@ subscribe simgrid-devel@lists.gforge.inria.fr
 subscribe simgrid-private@lists.gforge.inria.fr
 subscribe infra-songs--wp4@lists.gforge.inria.fr
 
-# index 
-set date_format = "%y-%m-%d"
-set index_format = "%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s"
-set sort = threads
-set sort_aux = 'reverse-last-date-received'
-set collapse_unread = yes
-set auto_tag = yes
-set mark_old = no
-folder-hook . 'exec collapse-all'
-
 # read options
 hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
@@ -58,10 +52,12 @@ set implicit_autoview = yes
 macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
-# address book
-set query_command = 'addr_lookup.sh %s'
-set alias_file = ~/.mutt/aliases
-source ~/.mutt/aliases
+# multi-account
+set from = "Mark Stillwell <mark@stillwell.me>"
+#bind index,pager m noop
+#reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
+#reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
+#reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/stillwell.rc"
 
 # compose options
 set edit_headers = yes
@@ -73,6 +69,11 @@ bind editor ^T complete
 bind editor <space> noop 
 set postpone = ask-yes
 
+# address book
+set query_command = 'addr_lookup.sh %s'
+set alias_file = ~/.mutt/aliases
+source ~/.mutt/aliases
+
 # encryption
 source ~/.mutt/smime.rc
 source ~/.mutt/gpg.rc
@@ -82,12 +83,11 @@ set crypt_replysignencrypted = yes
 set crypt_verify_sig = yes
 message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-traditional-pgp'
 
-# multi-account
-set from = "Mark Stillwell <mark@stillwell.me>"
-#bind index,pager m noop
-#reply-hook "~t mark@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
-#reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
-#reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/stillwell.rc"
+# sendmail
+set sendmail = msmtp-enqueue.sh
+set use_from = yes
+set envelope_from = yes
+set user_agent = yes
 
 # archive and search
 macro index,pager d "<enter-command>unset trash\n<delete-message>" "archive message"
