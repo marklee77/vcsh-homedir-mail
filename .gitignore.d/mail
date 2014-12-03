@@ -21,6 +21,7 @@
 !.offlineimap
 !.offlineimap/offlineimap.py
 !.offlineimaprc
+!.signature
 !.smd
 !.smd/config.*
 !.urlview
