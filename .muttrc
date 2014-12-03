@@ -37,7 +37,7 @@ folder-hook . 'exec collapse-all'
 alternates mark@stillwell.me marklee@fortawesome.org 
 alternates m.stillwell@cranfield.ac.uk m.stillwell@imperial.ac.uk 
 alternates mark.stillwell@ens-lyon.fr markls@hawaii.edu 
-alternates mark_lee_stillwell@yahoo.com
+alternates mark_lee_stillwell@yahoo.com mark.lee.stillwell@gmail.com
 subscribe simgrid-user@lists.gforge.inria.fr
 subscribe simgrid-devel@lists.gforge.inria.fr
 subscribe simgrid-private@lists.gforge.inria.fr
@@ -49,6 +49,7 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
 #set display_filter = "fold -sw 80"
+
 macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
@@ -64,7 +65,7 @@ message-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.r
 
 # compose options
 set edit_headers = yes
-set editor = "vim"
+set editor = vim
 set autoedit = yes
 set include = yes
 bind editor <Tab> complete-query
