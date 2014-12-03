@@ -5,6 +5,7 @@
 !.config/mr/config.d/mail
 !.gitignore.d
 !.gitignore.d/mail
+!.lbdbrc
 !.local
 !.local/bin
 !.local/bin/mailsync

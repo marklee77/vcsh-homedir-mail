@@ -73,9 +73,10 @@ bind editor <space> noop
 set postpone = ask-yes
 
 # address book
-set query_command = 'addr_lookup.sh %s'
 set alias_file = ~/.mutt/aliases
-source ~/.mutt/aliases
+set sort_alias = alias
+source $alias_file
+set query_command = 'lbdbq %s'
 
 # encryption
 source ~/.mutt/smime.rc
