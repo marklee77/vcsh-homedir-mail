@@ -4,12 +4,12 @@ source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 # mailbox configuration
 set mbox_type = maildir
 set header_cache = ~/.mutt/cache/
-set mbox = "~/.maildir"
-set folder = "~/.maildir"
-set mask = ".*"
-set spoolfile = "~/.maildir/"
-set record = "+.Sent"
-set postponed = "+.Drafts"
+set mbox = ~/.maildir
+set folder = ~/.maildir
+set mask = .*
+set spoolfile = ~/.maildir/
+set record = +.Sent
+set postponed = +.Drafts
 
 mailboxes ! + `\
 for file in ~/.maildir/.*; do \
@@ -20,14 +20,14 @@ if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
 fi; \
 done`
 
-macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
+macro pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
 # index 
-set date_format = "%y-%m-%d"
-set index_format = "%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s"
+set date_format = '%y-%m-%d'
+set index_format = '%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s'
 set sort = threads
-set sort_aux = 'reverse-last-date-received'
+set sort_aux = reverse-last-date-received
 set collapse_unread = yes
 set auto_tag = yes
 set mark_old = no
@@ -54,22 +54,22 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
 set display_filter = 'pee "lbdb-fetchaddr -a" cat'
-macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
-macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
+macro pager \cb '<pipe-entry>urlscan<enter>' 'Follow links with urlscan' 
+macro pager \cb '<pipe-entry>w3m<enter>' 'Follow links in w3m' 
 
 # multi-account
 source ~/.mutt/accounts/stillwell.rc
 macro index,pager m '<enter-command>source ~/.mutt/accounts/stillwell.rc<enter><mail>'
-reply-hook "~t .@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
-message-hook "~t .@stillwell.me" "source ~/.mutt/accounts/stillwell.rc"
-reply-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
-message-hook "~t marklee@fortawesome.org" "source ~/.mutt/accounts/fortawesome.rc"
-reply-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.rc"
-message-hook "~t m.stillwell@imperial.ac.uk" "source ~/.mutt/accounts/imperial.rc"
+reply-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
+reply-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
+reply-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
+message-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
+message-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
+message-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
 
 # compose options
 set edit_headers = yes
-set editor = "vim"
+set editor = vim
 set autoedit = yes
 set include = yes
 set text_flowed = yes
