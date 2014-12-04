@@ -48,7 +48,7 @@ hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
-#set display_filter = "fold -sw 80"
+set display_filter = 'pee "lbdb-fetchaddr -a" cat'
 macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlscan' 
 macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m' 
 
@@ -80,8 +80,7 @@ source $alias_file
 set query_command = 'lbdbq %s'
 macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
 #macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
-macro index,pager A "<enter-command>unset wait_key<enter><pipe-message>lbdb-fetchaddr -a<enter><enter-command>set wait_key<enter>" "add the address to lbdb"
-message-hook . "unset wait_key<enter><pipe-message>lbdb-fetchaddr -a<enter><enter-command>set wait_key<enter>"
+#macro index,pager A "<enter-command>unset wait_key<enter><pipe-message>lbdb-fetchaddr -a<enter><enter-command>set wait_key<enter>" "add the address to lbdb"
 
 # encryption
 source ~/.mutt/smime.rc
