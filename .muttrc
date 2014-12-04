@@ -110,5 +110,3 @@ macro index       ga "<change-folder>+.Archive<enter>" "go to archive"
 macro index       gp "<change-folder>+.Pending<enter>" "go to pending"
 macro index       gd "<change-folder>+.Drafts<enter>" "go to drafts"
 macro index       gs "<change-folder>+.Search<enter>" "go to cached search results"
-
-
