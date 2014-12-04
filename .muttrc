@@ -35,9 +35,10 @@ folder-hook . 'exec collapse-all'
 
 # addresses and mailing lists
 alternates mark@stillwell.me marklee@fortawesome.org 
-alternates m.stillwell@cranfield.ac.uk m.stillwell@imperial.ac.uk 
+alternates m.stillwell@imperial.ac.uk m.stillwell@cranfield.ac.uk
 alternates mark.stillwell@ens-lyon.fr markls@hawaii.edu 
-alternates mark_lee_stillwell@yahoo.com mark.lee.stillwell@gmail.com
+alternates mark_lee_stillwell@yahoo.com 
+alternates mark.lee.stillwell@gmail.com markls1977@gmail.com
 subscribe simgrid-user@lists.gforge.inria.fr
 subscribe simgrid-devel@lists.gforge.inria.fr
 subscribe simgrid-private@lists.gforge.inria.fr
@@ -108,3 +109,4 @@ macro index       ga "<change-folder>+.Archive<enter>" "go to archive"
 macro index       gp "<change-folder>+.Pending<enter>" "go to pending"
 macro index       gd "<change-folder>+.Drafts<enter>" "go to drafts"
 macro index       gs "<change-folder>+.Search<enter>" "go to cached search results"
+
