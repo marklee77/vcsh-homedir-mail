@@ -78,9 +78,7 @@ set alias_file = ~/.mutt/aliases
 set sort_alias = alias
 source $alias_file
 set query_command = 'lbdbq %s'
-macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
-#macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
-#macro index,pager A "<enter-command>unset wait_key<enter><pipe-message>lbdb-fetchaddr -a<enter><enter-command>set wait_key<enter>" "add the address to lbdb"
+macro generic,index,pager A "<enter-command>unset wait_key<enter><shell-escape>abook<enter><enter-command>set wait_key<enter>" "launch abook"
 
 # encryption
 source ~/.mutt/smime.rc
