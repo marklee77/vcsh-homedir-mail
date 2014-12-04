@@ -83,7 +83,7 @@ set alias_file = ~/.mutt/aliases
 set sort_alias = alias
 source $alias_file
 set query_command = 'lbdbq %s'
-macro generic,index,pager A "<enter-command>unset wait_key<enter><shell-escape>abook<enter><enter-command>set wait_key<enter>" "launch abook"
+macro generic,index,pager A '<enter-command>unset wait_key<enter><shell-escape>abook<enter><enter-command>set wait_key<enter>' 'launch abook'
 
 # encryption
 source ~/.mutt/smime.rc
@@ -101,16 +101,16 @@ set envelope_from = yes
 set user_agent = yes
 
 # archive and search
-macro index,pager d "<save-message>=.Archive\n<enter>" "archive message"
-macro index,pager S "<save-message>=.Spam\n<enter>" "message to spam"
-macro index,pager Mi "<copy-message>=<enter>" "copy to inbox"
-macro index,pager Mp "<copy-message>=.Pending<enter>" "copy to pending"
-macro index,pager <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>" "notmuch: search mail"
+macro index,pager d '<save-message>=.Archive\n<enter>' 'archive message'
+macro index,pager S '<save-message>=.Spam\n<enter>' 'message to spam'
+macro index,pager Mi '<copy-message>=<enter>' 'copy to inbox'
+macro index,pager Mp '<copy-message>=.Pending<enter>' 'copy to pending'
+macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
 
 # movement macros
-macro index       gi "<change-folder>+<enter>" "go to inbox"
-macro index       ga "<change-folder>+.Archive<enter>" "go to archive"
-macro index       gp "<change-folder>+.Pending<enter>" "go to pending"
-macro index       gd "<change-folder>+.Drafts<enter>" "go to drafts"
-macro index       gs "<change-folder>+.Search<enter>" "go to cached search results"
+macro index gi '<change-folder>+<enter>' 'go to inbox'
+macro index ga '<change-folder>+.Archive<enter>' 'go to archive'
+macro index gp '<change-folder>+.Pending<enter>' 'go to pending'
+macro index gd '<change-folder>+.Drafts<enter>' 'go to drafts'
+macro index gs '<change-folder>+.Search<enter>' 'go to cached search results'
 
