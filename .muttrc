@@ -80,7 +80,8 @@ source $alias_file
 set query_command = 'lbdbq %s'
 macro generic,index,pager \ca "<shell-escape>abook<return>" "launch abook"
 #macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
-macro index,pager A "<pipe-message>lbdb-fetchaddr -a<return>" "add the address to lbdb"
+macro index,pager A "<enter-command>unset wait_key<enter><pipe-message>lbdb-fetchaddr -a<enter><enter-command>set wait_key<enter>" "add the address to lbdb"
+message-hook . "unset wait_key<enter><pipe-message>lbdb-fetchaddr -a<enter><enter-command>set wait_key<enter>"
 
 # encryption
 source ~/.mutt/smime.rc
@@ -102,7 +103,7 @@ macro index,pager d "<save-message>=.Archive\n<enter>" "archive message"
 macro index,pager S "<save-message>=.Spam\n<enter>" "message to spam"
 macro index,pager Mi "<copy-message>=<enter>" "copy to inbox"
 macro index,pager Mp "<copy-message>=.Pending<enter>" "copy to pending"
-macro index,pager <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search<enter><change-folder-readonly>=.Search<enter>" "notmuch: search mail"
+macro index,pager <F8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>" "notmuch: search mail"
 
 # movement macros
 macro index       gi "<change-folder>+<enter>" "go to inbox"
