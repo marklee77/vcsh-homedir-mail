@@ -33,6 +33,10 @@ set auto_tag = yes
 set mark_old = no
 folder-hook . 'exec collapse-all'
 
+# performance tuning
+folder-hook . 'set read_inc=10;set write_inc=10'
+folder-hook '=.(Archive|Sent)' 'set read_inc=1000;set write_inc=1000'
+
 # addresses and mailing lists
 alternates mark@stillwell.me marklee@fortawesome.org 
 alternates m.stillwell@imperial.ac.uk m.stillwell@cranfield.ac.uk
