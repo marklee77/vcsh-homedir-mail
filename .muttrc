@@ -101,8 +101,8 @@ set envelope_from = yes
 set user_agent = yes
 
 # archive and search
-macro index,pager d '<save-message>=.Archive\n<enter>' 'archive message'
-macro index,pager S '<save-message>=.Spam\n<enter>' 'message to spam'
+macro index,pager d '<enter-command>set confirmappend=no<enter><save-message>=.Archive<enter><enter-command>set confirmappend=yes<enter>' 'archive message'
+macro index,pager S '<save-message>=.Spam<enter>' 'message to spam'
 macro index,pager Mi '<copy-message>=<enter>' 'copy to inbox'
 macro index,pager Mp '<copy-message>=.Pending<enter>' 'copy to pending'
 macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
