@@ -36,6 +36,7 @@ MAILBOX=".maildir/"
 #
 # EXCLUDE_LOCAL="Mail/spam Mail/trash"
 # EXCLUDE_REMOTE="OtherMail/with%20spaces"
+EXCLUDE_LOCAL=".maildir/.Search"
 
 # Local synchronization
 #
