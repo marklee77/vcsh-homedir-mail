@@ -15,7 +15,8 @@ mailboxes ! + `\
 for file in ~/.maildir/.*; do \
 box=$(basename "$file"); \
 if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
-   -a ! "$box" = '.subscriptions' ]; then \
+   -a ! "$box" = '.subscriptions' -a ! "$box" = '.mbsyncstate' \
+   -a ! "$box" = '.uidvalidity' ]; then \
  echo -n "\"+$box\" "; \
 fi; \
 done`
