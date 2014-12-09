@@ -27,5 +27,6 @@ if nm-online -x; then
 fi
 
 notmuch new
+notmuch compact
 
 exit 0
