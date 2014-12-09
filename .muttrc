@@ -55,7 +55,7 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
 set display_filter = 'pee "lbdb-fetchaddr -a" cat'
-macro pager \cb '<pipe-entry>urlscan<enter>' 'Follow links with urlscan' 
+macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><enter-command>set wait_key<enter>' 'Follow links with urlscan' 
 
 # multi-account
 source ~/.mutt/accounts/stillwell.rc
