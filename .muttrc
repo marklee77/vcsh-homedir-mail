@@ -21,8 +21,7 @@ if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
 fi; \
 done`
 
-macro index c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
-macro pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
+macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
 # index 
 set date_format = '%y-%m-%d'
