@@ -58,6 +58,9 @@ set display_filter = 'pee "lbdb-fetchaddr -a" cat'
 set markers = no
 macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><enter-command>set wait_key<enter>' 'Follow links with urlscan' 
 
+# key bindings
+bind pager g group-reply
+
 # multi-account
 source ~/.mutt/accounts/stillwell.rc
 macro index,pager m '<enter-command>source ~/.mutt/accounts/stillwell.rc<enter><mail>'
