@@ -21,6 +21,8 @@ LOGFILE="${HOME}/.local/var/log/${SCRIPTNAME}.log"
 exec 1>${LOGFILE}
 exec 2>&1
 
+exit 0
+
 if nm-online -x; then
     msmtp-runqueue.sh 
     mbsync gmail && smd-pull && smd-push 
