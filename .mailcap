@@ -1,4 +1,3 @@
-application/pdf;pdftotext %s -;copiousoutput
 application/pdf;evince %s 2>&1 >/dev/null &;test=[ -n "${DISPLAY}" ];needsterminal
 image/*;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
 text/html;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
