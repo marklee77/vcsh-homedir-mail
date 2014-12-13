@@ -23,7 +23,9 @@ exec 2>&1
 
 if nm-online -x; then
     msmtp-runqueue.sh 
-    mbsync gmail && smd-pull && smd-push 
+    mbsync gmail 
+    smd-pull 
+    smd-push 
 fi
 
 notmuch new
