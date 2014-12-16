@@ -110,13 +110,11 @@ set user_agent = yes
 macro index,pager d '<enter-command>set confirmappend=no<enter><save-message>=.Archive<enter><enter-command>set confirmappend=yes<enter>' 'archive message'
 macro index,pager S '<save-message>=.Spam<enter>' 'message to spam'
 macro index,pager Mi '<copy-message>=<enter>' 'copy to inbox'
-macro index,pager Mp '<copy-message>=.Pending<enter>' 'copy to pending'
 macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
 
 # movement macros
 macro index,pager gi '<change-folder>+<enter>' 'go to inbox'
 macro index,pager ga '<change-folder>+.Archive<enter>' 'go to archive'
-macro index,pager gp '<change-folder>+.Pending<enter>' 'go to pending'
 macro index,pager gd '<change-folder>+.Drafts<enter>' 'go to drafts'
 macro index,pager gs '<change-folder>+.Search<enter>' 'go to cached search results'
 
