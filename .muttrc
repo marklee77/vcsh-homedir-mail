@@ -8,7 +8,7 @@ set mbox = ~/.maildir
 set folder = ~/.maildir
 set mask = .*
 set spoolfile = ~/.maildir/
-set record = +.Sent
+set record = +.Archive
 set postponed = +.Drafts
 
 mailboxes ! + `\
@@ -35,7 +35,7 @@ folder-hook . 'exec collapse-all'
 
 # performance tuning
 folder-hook . 'set read_inc=10;set write_inc=10'
-folder-hook '=.(Archive|Sent)' 'set read_inc=1000;set write_inc=1000'
+folder-hook '=.Archive' 'set read_inc=1000;set write_inc=1000'
 
 # addresses and mailing lists
 alternates mark@stillwell.me marklee@fortawesome.org 
