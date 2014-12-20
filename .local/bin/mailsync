@@ -26,7 +26,6 @@ if nm-online -x; then
     mbsync gmail-inbox
     smd-pull 
     smd-push 
-    mbsync gmail-sent
     mbsync gmail-archive
 fi
 
