@@ -56,7 +56,7 @@ hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
-set display_filter = 'pee "lbdb-fetchaddr -a" cat'
+#set display_filter = 'pee "lbdb-fetchaddr -a" cat'
 set markers = no
 macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><enter-command>set wait_key<enter>' 'Follow links with urlscan' 
 
