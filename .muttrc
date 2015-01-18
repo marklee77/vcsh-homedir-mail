@@ -94,7 +94,7 @@ macro generic,index,pager A '<enter-command>unset wait_key<enter><shell-escape>a
 # encryption
 source ~/.mutt/smime.rc
 source ~/.mutt/gpg.rc
-set crypt_autosign = yes
+set crypt_autosign = no
 set crypt_replysign = yes
 set crypt_replyencrypt = yes
 set crypt_replysignencrypted = yes
