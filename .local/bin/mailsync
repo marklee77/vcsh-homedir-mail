@@ -1,24 +1,25 @@
 #!/bin/bash
-SCRIPTNAME="$(basename $0)"
-LOCKDIR="${HOME}/.local/var/lock/${SCRIPTNAME}"
-PIDFILE="${LOCKDIR}/PID"
-if mkdir ${LOCKDIR} &> /dev/null; then
-    trap "rm -rf ${LOCKDIR}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
-    echo "$$" > ${PIDFILE}
+scriptname="$(basename $0)"
+
+lockdir="${HOME}/.local/var/lock/${scriptname}"
+pidfile="${lockdir}/PID"
+if mkdir ${lockdir} &> /dev/null; then
+    trap "rm -rf ${lockdir}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+    echo "$$" > ${pidfile}
 else
-    OTHERPID=$(cat ${PIDFILE})
-    OTHERNAME=$(basename $(ps aux | perl -ane "print \"\$F[11]\\n\" if (\$F[1] == ${OTHERPID});" 2>/dev/null) 2>/dev/null)
-    if [ -n "${OTHERPID}" ] && [ "${OTHERNAME}" != "${SCRIPTNAME}" ]; then
-        # lock is stale, remove and try again...
-        rm -rf ${LOCKDIR}
-        exec "$0" "$@"
+    otherpid=$(cat ${pidfile})
+    othercmd=$(ps --no-headers --format command --pid ${otherpid})
+    if [[ "${othercmd}" =~ .*${scriptname}.* ]]; then
+        echo "another instance of ${scriptname} is currently running." >&2
+        exit 1
     fi
-    echo "another instance of ${SCRIPTNAME} is currently running." >&2
-    exit 1
+    # lock is stale, remove and try again...
+    rm -rf ${lockdir}
+    exec "$0" "$@"
 fi
 
-LOGFILE="${HOME}/.local/var/log/${SCRIPTNAME}.log"
-exec 1>${LOGFILE}
+logfile="${HOME}/.local/var/log/${scriptname}.log"
+exec 1>${logfile}
 exec 2>&1
 
 if nm-online -x; then
