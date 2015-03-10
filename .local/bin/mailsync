@@ -7,7 +7,7 @@ if mkdir ${lockdir} &> /dev/null; then
     trap "rm -rf ${lockdir}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
     echo "$$" > ${pidfile}
 else
-    otherpid=$(cat ${pidfile})
+    otherpid=$(cat ${pidfile} 2>/dev/null)
     othercmd=$(ps --no-headers --format command --pid ${otherpid})
     if [[ "${othercmd}" =~ .*${scriptname}.* ]]; then
         echo "another instance of ${scriptname} is currently running." >&2
