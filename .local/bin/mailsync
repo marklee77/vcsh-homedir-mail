@@ -22,15 +22,17 @@ logfile="${HOME}/.local/var/log/${scriptname}.log"
 exec 1>${logfile}
 exec 2>&1
 
+
+
 if nm-online -x; then
     msmtp-runqueue.sh 
-    mbsync gmail-inbox
+    #mbsync gmail-inbox
     smd-pull 
     smd-push 
-    mbsync gmail-archive
+    #mbsync gmail-archive
 fi
 
 notmuch new
-notmuch compact
+#notmuch compact
 
 exit 0
