@@ -22,7 +22,8 @@ logfile="${HOME}/.local/var/log/${scriptname}.log"
 exec 1>${logfile}
 exec 2>&1
 
-
+rundir="${HOME}/.local/var/run/${scriptname}"
+mkdir -p ${rundir}
 
 if nm-online -x; then
     msmtp-runqueue.sh 
@@ -33,6 +34,11 @@ if nm-online -x; then
 fi
 
 notmuch new
-#notmuch compact
+
+count=$(cat ${rundir}/count 2>/dev/null)
+[ -z "$count" ] && count=0
+[ "$count" -ge 18 ] && count=0
+[ "$count" -eq 0 ] && notmuch compact
+echo $((${count}+1)) > ${rundir}/count
 
 exit 0
