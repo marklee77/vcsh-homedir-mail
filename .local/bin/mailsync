@@ -25,12 +25,10 @@ exec 2>&1
 rundir="${HOME}/.local/var/run/${scriptname}"
 mkdir -p ${rundir}
 
-if nm-online -x; then
+if nm-online && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
     msmtp-runqueue.sh 
-    #mbsync gmail-inbox
     smd-pull 
     smd-push 
-    #mbsync gmail-archive
 fi
 
 notmuch new
