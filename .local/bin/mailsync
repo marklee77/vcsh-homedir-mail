@@ -35,13 +35,14 @@ mkdir -p ${rundir}
 
 count=$(cat ${rundir}/count 2>/dev/null)
 
-if [[ "$count" =~ '^[0-9]+$' ]]; then
+count=3
+if [[ "$count" =~ '[0-9]+' ]]; then
     echo "$count is a number"
 fi
 
 [[ "$count" =~ '^[0-9]+$' ]] || count=0
 [[ "$count" =~ '^[0-9]+$' ]] && [ "$count" -lt 18 ] || count=0
 #[ "$count" -eq 0 ] && notmuch compact
-echo $((${count}+1)) > ${rundir}/count
+echo -n $((${count}+1)) > ${rundir}/count
 
 exit 0
