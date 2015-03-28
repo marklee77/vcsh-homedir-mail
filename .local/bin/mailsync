@@ -34,7 +34,7 @@ fi
 notmuch new
 
 count=$(cat ${rundir}/count 2>/dev/null)
-[ -z "$count" ] && count=0
+[[ "$count" =~ '^[0-9]+$' ]] || count=0
 [ "$count" -ge 18 ] && count=0
 [ "$count" -eq 0 ] && notmuch compact
 echo $((${count}+1)) > ${rundir}/count
