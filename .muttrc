@@ -72,6 +72,7 @@ reply-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
 message-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
 message-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
 message-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
+message-hook '~f .ac.uk' 'source ~/.mutt/accounts/imperial.rc'
 
 # compose options
 set edit_headers = yes
