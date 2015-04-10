@@ -69,10 +69,10 @@ macro index,pager m '<enter-command>source ~/.mutt/accounts/stillwell.rc<enter><
 reply-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
 reply-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
 reply-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
+reply-hook '
 message-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
 message-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
 message-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
-message-hook '~f .ac.uk' 'source ~/.mutt/accounts/imperial.rc'
 
 # compose options
 set edit_headers = yes
