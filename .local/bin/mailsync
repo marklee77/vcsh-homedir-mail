@@ -26,8 +26,10 @@ rundir="${HOME}/.local/var/run/${scriptname}"
 mkdir -p ${rundir}
 
 if nm-online && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
-    msmtp-runqueue.sh 
-    mbsync squid
+    msmtp-runqueue.sh && \
+        rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
+    mbsync squid && \
+        rm -f ${rundir}/mbsync.error || touch ${rundir}/mbsync.error
 fi
 
 notmuch new
