@@ -25,12 +25,9 @@ exec 2>&1
 rundir="${HOME}/.local/var/run/${scriptname}"
 mkdir -p ${rundir}
 
-exit 0
-
 if nm-online && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
     msmtp-runqueue.sh 
-    smd-pull 
-    smd-push 
+    mbsync squid
 fi
 
 notmuch new
