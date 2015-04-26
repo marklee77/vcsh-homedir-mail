@@ -47,7 +47,7 @@ other_email=marklee@fortawesome.org;m.stillwell@imperial.ac.uk;m.stillwell@cranf
 #		be ignored, independent of its depth/location in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=
 ignore=
 
 # Search configuration
