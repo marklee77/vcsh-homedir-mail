@@ -11,7 +11,7 @@ set spoolfile = ~/.maildir/
 set record = +.Archive
 set postponed = +.Drafts
 
-mailboxes ! +. +.Search +.Drafts +.Archive +.Spam
+mailboxes ! +. +.Search +.Drafts +.Archive +.Spam +.Trash
 #mailboxes ! + `\
 #for file in ~/.maildir/.*; do \
 #box=$(basename "$file"); \
