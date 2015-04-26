@@ -4,7 +4,7 @@ scriptname="$(basename $0)"
 lockdir="${HOME}/.local/var/lock/${scriptname}"
 pidfile="${lockdir}/PID"
 if mkdir ${lockdir} &> /dev/null; then
-    trap "rm -rf ${lockdir}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+    trap "rm -rf ${lockdir}; pkill -RTMIN+4 i3blocks; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
     echo "$$" > ${pidfile}
 else
     otherpid=$(cat ${pidfile} 2>/dev/null)
@@ -24,6 +24,8 @@ exec 2>&1
 
 rundir="${HOME}/.local/var/run/${scriptname}"
 mkdir -p ${rundir}
+
+pkill -RTMIN+4 i3blocks
 
 if nm-online && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
     msmtp-runqueue.sh && \
