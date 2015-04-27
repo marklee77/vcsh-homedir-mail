@@ -1,8 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
+queuedir=${HOME}/.local/var/spool/msmtpqueue
+mkdir -p $queuedir || exit 1
 
-QUEUEDIR=$HOME/.msmtpqueue
+if ! ls ${queuedir}/*.msmtp >/dev/null 2>/dev/null; then
+    echo "No mails in $queuedir"
+    exit 0
+fi
 
-for i in $QUEUEDIR/*.mail; do
-	egrep -s --colour -h '(^From:|^To:|^Subject:)' "$i" || echo "No mail in queue";
-	echo " "
+for file in ${queuedir}/*.msmtp; do
+    egrep -s --colour -h '(^From:|^To:|^Subject:)' "$file"
+    echo " "
 done
+
+exit 0

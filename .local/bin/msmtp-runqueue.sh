@@ -1,56 +1,49 @@
-#!/usr/bin/env bash
+#!/bin/bash
+scriptname="$(basename $0)"
 
-QUEUEDIR="$HOME/.msmtpqueue"
-LOCKFILE="$QUEUEDIR/.lock"
-MAXWAIT=120
-
-OPTIONS=$@
-
-# wait for a lock that another instance has set
-WAIT=0
-while [ -e "$LOCKFILE" -a "$WAIT" -lt "$MAXWAIT" ]; do
-	sleep 1
-	WAIT="`expr "$WAIT" + 1`"
-done
-if [ -e "$LOCKFILE" ]; then
-	echo "Cannot use $QUEUEDIR: waited $MAXWAIT seconds for"
-	echo "lockfile $LOCKFILE to vanish, giving up."
-	echo "If you are sure that no other instance of this script is"
-	echo "running, then delete the lock file."
-	exit 1
+lockdir="${HOME}/.local/var/lock/${scriptname}"
+pidfile="${lockdir}/PID"
+if mkdir ${lockdir} &> /dev/null; then
+    trap "rm -rf ${lockdir}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+    echo "$$" > ${pidfile}
+else
+    otherpid=$(cat ${pidfile} 2>/dev/null)
+    othercmd=$(ps --no-headers --format command --pid ${otherpid})
+    if [[ "${othercmd}" =~ .*${scriptname}.* ]]; then
+        if [ $(ps --no-headers -C ${scriptname} | wc -l) -ge 10 ]; then
+            echo "too many ${scriptname} processes waiting for lock"
+            exit 1
+        fi
+        sleep 1
+    else
+        rm -rf ${lockdir}
+    fi
+    exec "$0" "$@"
 fi
 
-# change into $QUEUEDIR 
-cd "$QUEUEDIR" || exit 1
+# Set secure permissions on created directories and files
+umask 077
 
-# check for empty queuedir
-if [ "`echo *.mail`" = '*.mail' ]; then
-	echo "No mails in $QUEUEDIR"
-	exit 0
+queuedir=${HOME}/.local/var/spool/msmtpqueue
+mkdir -p $queuedir || exit 1
+cd $queuedir || exit 1
+
+if ! ls *.msmtp >/dev/null 2>/dev/null; then
+    echo "No mails in $queuedir"
+    exit 0
 fi
-
-# lock the $QUEUEDIR
-touch "$LOCKFILE" || exit 1
 
 # process all mails
-for MAILFILE in *.mail; do
-	MSMTPFILE="`echo $MAILFILE | sed -e 's/mail/msmtp/'`"
-	echo "*** Sending $MAILFILE to `sed -e 's/^.*-- \(.*$\)/\1/' $MSMTPFILE` ..."
-	if [ ! -f "$MSMTPFILE" ]; then
-		echo "No corresponding file $MSMTPFILE found"
-		echo "FAILURE"
-		continue
-	fi
-	msmtp $OPTIONS `cat "$MSMTPFILE"` < "$MAILFILE"
-	if [ $? -eq 0 ]; then
-		rm "$MAILFILE" "$MSMTPFILE"
-		echo "$MAILFILE sent successfully"
-	else
-		echo "FAILURE"
-	fi
+failcount=0
+for file in *.msmtp; do
+    echo "*** Sending $file to $(perl -lne 'print $1 if $. == 1 and /-- (.*)$/' $file) ..."
+    if perl -ne 'print if $. > 1' $file | msmtp $@ $(head -1 $file); then
+        rm -f $file
+        echo "$file sent successfully"
+    else
+        echo "FAILURE"
+        failcount=$(($failcount+1))
+    fi
 done
 
-# remove the lock
-rm -f "$LOCKFILE"
-
-exit 0
+exit $failcount
