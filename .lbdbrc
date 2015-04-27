@@ -63,9 +63,9 @@ MUTTALIAS_FILES="aliases"
 # If you set this to "address", lbdbq sorts the output by addresses
 # (that's the default).
 #
-#SORT_OUTPUT=address
+SORT_OUTPUT=no
 
 # Do you want to see duplicate mail addresses (with multiple real
 # names or different comment fields)?  Default is "no".
 #
-#KEEP_DUPES=no
+KEEP_DUPES=no
