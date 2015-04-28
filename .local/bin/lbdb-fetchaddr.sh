@@ -5,8 +5,13 @@ emailfile="${HOME}/.lbdb/m_inmail.list"
 mkdir -p $(dirname $emailfile)
 touch $emailfile
 
-msgdate=$(tee >(reformail -x date:) >&3) 3>&1 | $fetchaddr -c utf-8 | \
-    while IFS=$'\t' read -a fields; do
+headers=$(reformail -X to: -X cc: -X bcc: -X date:)
+
+msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M")
+
+$fetchaddr -c utf-8 <<< "$headers" 
+
+$fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
 
     addr=${fields[0]//\'}
     name=${fields[@]:1:$((${#fields[@]}-2))}
@@ -29,9 +34,10 @@ msgdate=$(tee >(reformail -x date:) >&3) 3>&1 | $fetchaddr -c utf-8 | \
     [ -n "$prevdate" ] && prevstamp=$(date -d "$prevdate" +%s)
     
     # if current is newer then delete old from file and replace
-    if [ $datestamp -gt $prevstamp ]; then
-        perl -i -ane "print unless \$F[0] eq '$addr'" $emailfile
-        echo -e "$addr\t$name\t$date" >> $emailfile
-    fi
+    #if [ $datestamp -gt $prevstamp ]; then
+    #    perl -i -ane "print unless \$F[0] eq '$addr'" $emailfile
+    #    echo -e "$addr\t$name\t$date" >> $emailfile
+    #fi
+    echo -e "$addr\t$name\t$date" >> $emailfile
 
 done
