@@ -44,6 +44,4 @@ $fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
         echo -e "$addr\t$name\t$date" >> $emailfile
     fi
 
-    echo -e "$addr\t$name\t$date"
-
 done
