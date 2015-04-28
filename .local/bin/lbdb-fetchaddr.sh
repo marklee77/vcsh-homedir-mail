@@ -19,7 +19,7 @@ msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M" \
 encoding=$(file -bi - <<< "$headers" | perl -ne 'print $1 if /charset=(.*)/')
 headers=$(iconv -f $encoding -t utf-8 <<< "$headers")
 
-$fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
+$fetchaddr -c utf-8 -a <<< "$headers" | while IFS=$'\t' read -a fields; do
 
     addr=${fields[0]//\'}
     name=${fields[@]:1:$((${#fields[@]}-2))}

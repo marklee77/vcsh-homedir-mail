@@ -108,7 +108,7 @@ set crypt_verify_sig = yes
 message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-traditional-pgp'
 
 # sendmail
-set sendmail = msmtp-enqueue.sh
+set sendmail = sendmail.sh
 set use_from = yes
 set envelope_from = yes
 set user_agent = yes

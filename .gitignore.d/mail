@@ -13,6 +13,7 @@
 !.local/bin/mailsync
 !.local/bin/msmtp-*.sh
 !.local/bin/lbdb-*.sh
+!.local/bin/sendmail.sh
 !.mailcap
 !.mairixrc
 !.mbsyncrc
