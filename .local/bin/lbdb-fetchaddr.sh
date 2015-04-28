@@ -15,7 +15,7 @@ $fetchaddr | while IFS=$'\t' read -a fields; do
     addr=${addr,,}
 
     # quote name if it contains a ",", but don't double quote
-    [[ "$name" =~ ^[^\"].*,.*[^\"]$ ]] && name="\"$name\""
+    #[[ "$name" =~ ^[^\"].*,.*[^\"]$ ]] && name="\"$name\""
 
     datestamp=$(date -d "$date" +%s)
 
