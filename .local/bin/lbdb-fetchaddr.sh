@@ -2,14 +2,19 @@
 fetchaddr=/usr/lib/lbdb/fetchaddr
 emailfile="${HOME}/.lbdb/m_inmail.list"
 
+if [ -f "$1" ]; then
+    if ! [[ $(file -bi $1) =~ ^message/rfc822\; ]]; then
+        exit 0
+    fi
+    exec < $1    
+fi
+
 mkdir -p $(dirname $emailfile)
 touch $emailfile
 
-headers=$(reformail -X to: -X cc: -X bcc: -X date:)
+headers=$(reformail -X from: -X to: -X cc: -X bcc: -X date:)
 
 msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M")
-
-$fetchaddr -c utf-8 <<< "$headers" 
 
 $fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
 
@@ -34,10 +39,11 @@ $fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
     [ -n "$prevdate" ] && prevstamp=$(date -d "$prevdate" +%s)
     
     # if current is newer then delete old from file and replace
-    #if [ $datestamp -gt $prevstamp ]; then
-    #    perl -i -ane "print unless \$F[0] eq '$addr'" $emailfile
-    #    echo -e "$addr\t$name\t$date" >> $emailfile
-    #fi
-    echo -e "$addr\t$name\t$date" >> $emailfile
+    if [ $datestamp -gt $prevstamp ]; then
+        perl -i -ane "print unless \$F[0] eq '$addr'" $emailfile
+        echo -e "$addr\t$name\t$date" >> $emailfile
+    fi
+
+    echo -e "$addr\t$name\t$date"
 
 done
