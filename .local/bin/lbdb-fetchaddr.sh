@@ -14,7 +14,10 @@ touch $emailfile
 
 headers=$(reformail -X from: -X to: -X cc: -X bcc: -X date:)
 
-msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M")
+msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M" \
+          2>/dev/null)
+encoding=$(file -bi - <<< "$headers" | perl -ne 'print $1 if /charset=(.*)/')
+headers=$(iconv -f $encoding -t utf-8 <<< "$headers")
 
 $fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
 
@@ -24,10 +27,6 @@ $fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
 
     # lowercase addr
     addr=${addr,,}
-
-    # fix encoding in name
-    # encoding=$(file -bi - <<< "$name" | perl -ne 'print $1 if /charset=(.*)/')
-    # name=$(iconv -f $encoding -t utf-8 <<< "$name")
 
     [ -n "$msgdate" ] && date=$msgdate
 
