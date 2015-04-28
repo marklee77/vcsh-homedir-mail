@@ -17,7 +17,8 @@ headers=$(reformail -X from: -X to: -X cc: -X bcc: -X date:)
 msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M" \
           2>/dev/null)
 encoding=$(file -bi - <<< "$headers" | perl -ne 'print $1 if /charset=(.*)/')
-headers=$(iconv -f $encoding -t utf-8 <<< "$headers")
+reencoded_headers=$(iconv -f $encoding -t utf-8 <<< "$headers" 2>/dev/null) && \
+    headers=$reencoded_headers
 
 $fetchaddr -c utf-8 -a <<< "$headers" | while IFS=$'\t' read -a fields; do
 
