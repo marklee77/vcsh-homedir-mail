@@ -5,7 +5,12 @@ emailfile="${HOME}/.lbdb/m_inmail.list"
 mkdir -p $(dirname $emailfile)
 touch $emailfile
 
-$fetchaddr | perl -ne 's/^[^\t]+\t\K/' | while IFS=$'\t' read addr name date; do
+$fetchaddr | while IFS=$'\t' read -a fields; do
+
+    addr=${fields[0]}
+    name=${fields[@]:1:$((${#fields[@]}-2))}
+    date=${fields[-1]}
+
     # lowercase addr
     addr=${addr,,}
 
