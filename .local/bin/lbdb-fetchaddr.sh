@@ -2,6 +2,9 @@
 fetchaddr=/usr/lib/lbdb/fetchaddr
 emailfile="${HOME}/.lbdb/m_inmail.list"
 
+mkdir -p $(dirname $emailfile)
+touch $emailfile
+
 $fetchaddr | perl -pe 's/\t/|/g' | while IFS="|" read addr name date; do
     # lowercase addr
     addr=${addr,,}
