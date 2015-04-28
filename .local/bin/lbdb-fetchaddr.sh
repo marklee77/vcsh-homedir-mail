@@ -14,8 +14,9 @@ $fetchaddr | while IFS=$'\t' read -a fields; do
     # lowercase addr
     addr=${addr,,}
 
-    # quote name if it contains a ",", but don't double quote
-    #[[ "$name" =~ ^[^\"].*,.*[^\"]$ ]] && name="\"$name\""
+    # fix encoding in name
+    encoding=$(file -bi - <<< "$name" | perl -ne 'print $1 if /charset=(.*)/')
+    name=$(iconv -f $encoding -t utf-8 <<< "$name")
 
     datestamp=$(date -d "$date" +%s)
 
