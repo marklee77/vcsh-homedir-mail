@@ -5,7 +5,8 @@ emailfile="${HOME}/.lbdb/m_inmail.list"
 mkdir -p $(dirname $emailfile)
 touch $emailfile
 
-$fetchaddr -c utf-8 | while IFS=$'\t' read -a fields; do
+msgdate=$(tee >(reformail -x date:) >&3) 3>&1 | $fetchaddr -c utf-8 | \
+    while IFS=$'\t' read -a fields; do
 
     addr=${fields[0]//\'}
     name=${fields[@]:1:$((${#fields[@]}-2))}
@@ -17,6 +18,8 @@ $fetchaddr -c utf-8 | while IFS=$'\t' read -a fields; do
     # fix encoding in name
     # encoding=$(file -bi - <<< "$name" | perl -ne 'print $1 if /charset=(.*)/')
     # name=$(iconv -f $encoding -t utf-8 <<< "$name")
+
+    [ -n "$msgdate" ] && date=$msgdate
 
     datestamp=$(date -d "$date" +%s)
 
