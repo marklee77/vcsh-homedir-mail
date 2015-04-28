@@ -7,7 +7,7 @@ touch $emailfile
 
 $fetchaddr | while IFS=$'\t' read -a fields; do
 
-    addr=${fields[0]}
+    addr=${fields[0]//\'}
     name=${fields[@]:1:$((${#fields[@]}-2))}
     date=${fields[-1]}
 
