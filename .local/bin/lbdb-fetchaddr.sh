@@ -17,12 +17,12 @@ $fetchaddr | while IFS=$'\t' read -a fields; do
     # quote name if it contains a ",", but don't double quote
     [[ "$name" =~ ^[^\"].*,.*[^\"]$ ]] && name="\"$name\""
 
-    datestamp=$(date -d "$date" +%s) || echo -e "DATESTAMP: $addr\t$name\t$date"
+    datestamp=$(date -d "$date" +%s)
 
     prevdate=$(perl -lane "print \"\$F[-2] \$F[-1]\" if \$F[0] eq '$addr'" \
                $emailfile | tail -1)
     prevstamp=0
-    [ -n "$prevdate" ] && (prevstamp=$(date -d "$prevdate" +%s) || echo -e "PREVDATESTAMP: $addr\t$name\t$date")
+    [ -n "$prevdate" ] && prevstamp=$(date -d "$prevdate" +%s)
     
     # if current is newer then delete old from file and replace
     if [ $datestamp -gt $prevstamp ]; then
