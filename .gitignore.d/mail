@@ -7,6 +7,8 @@
 !.config/mr/config.d/mail
 !.gitignore.d
 !.gitignore.d/mail
+!.lbdb
+!.lbdb/*
 !.lbdbrc
 !.local
 !.local/bin
