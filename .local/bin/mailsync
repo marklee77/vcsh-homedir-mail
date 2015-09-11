@@ -28,9 +28,8 @@ mkdir -p ${rundir}
 pkill -RTMIN+4 i3blocks
 
 if nm-online && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
-    msmtp-runqueue.sh 
-    echo "msmtp status: $?"
-        #&& rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
+    msmtp-runqueue.sh && \
+        rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
     mbsync squid && \
         rm -f ${rundir}/mbsync.error || touch ${rundir}/mbsync.error
 else

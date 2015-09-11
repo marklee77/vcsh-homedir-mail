@@ -4,7 +4,7 @@ scriptname="$(basename $0)"
 lockdir="${HOME}/.local/var/lock/${scriptname}"
 pidfile="${lockdir}/PID"
 if mkdir ${lockdir} &> /dev/null; then
-    trap "rm -rf ${lockdir}; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+    trap "rm -rf ${lockdir}" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
     echo "$$" > ${pidfile}
 else
     otherpid=$(cat ${pidfile} 2>/dev/null)
