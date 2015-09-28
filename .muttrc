@@ -3,7 +3,7 @@ source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
 set mbox_type = maildir
-set header_cache = ~/.mutt/cache/
+set header_cache = ~/.cache/mutt/
 set mbox = ~/.maildir
 set folder = ~/.maildir
 set mask = .*
@@ -57,7 +57,8 @@ subscribe hp-dev@imperial.ac.uk
 
 # read options
 hdr_order From Resent-From Reply-To Date From To Cc
-alternative_order text/plain text/enriched text/html
+alternative_order text/html text/enriched text/plain
+#alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
 #set display_filter = 'pee "lbdb-fetchaddr -a" cat'
