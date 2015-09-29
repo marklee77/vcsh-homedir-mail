@@ -1,7 +1,7 @@
 #!/bin/bash
 scriptname="$(basename $0)"
 
-lockdir="${HOME}/.local/var/lock/${scriptname}"
+lockdir="${XDG_RUNTIME_DIR}/${scriptname}-lock"
 pidfile="${lockdir}/PID"
 if mkdir ${lockdir} &> /dev/null; then
     trap "rm -rf ${lockdir}; pkill -RTMIN+4 i3blocks; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
@@ -22,7 +22,7 @@ logfile="${HOME}/.local/var/log/${scriptname}.log"
 exec 1>${logfile}
 exec 2>&1
 
-rundir="${HOME}/.local/var/run/${scriptname}"
+rundir="${XDG_RUNTIME_DIR}/${scriptname}"
 mkdir -p ${rundir}
 
 pkill -RTMIN+4 i3blocks
@@ -36,12 +36,18 @@ else
     rm -f ${rundir}/*.error
 fi
 
-#notmuch new
+epoch=$(date +%s)
+newepoch=$(cat ${rundir}/newepoch 2>/dev/null)
+compactepoch=$(cat ${rundir}/compactepoch 2>/dev/null)
 
-count=$(cat ${rundir}/count 2>/dev/null)
+if [[ ! "$newepoch" =~ ^[0-9]+$ ]] || [ "$(($epoch - $newepoch))" -gt 14400 ]; then
+    notmuch new
+    echo $epoch > ${rundir}/newepoch
+fi
 
-[[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -lt 24 ] || count=0
-[ "$count" -eq 0 ] && notmuch new && notmuch compact
-echo -n $((${count}+1)) > ${rundir}/count
+if [[ ! "$compactepoch" =~ ^[0-9]+$ ]] || [ "$(($epoch - $compactepoch))" -gt 86400 ]; then
+    notmuch compact
+    echo $epoch > ${rundir}/compactepoch
+fi
 
 exit 0
