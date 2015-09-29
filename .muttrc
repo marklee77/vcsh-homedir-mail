@@ -7,11 +7,11 @@ set header_cache = ~/.cache/mutt/
 set mbox = ~/.maildir
 set folder = ~/.maildir
 set mask = .*
-set spoolfile = ~/.maildir/
-set record = +.Archive
-set postponed = +.Drafts
+set spoolfile = =
+set record = =.Archive
+set postponed = =.Drafts
 
-mailboxes ! +. +.Search +.Drafts +.Archive +.Spam +.Trash
+mailboxes ! =INBOX =.Search =.Drafts =.Archive =.Spam =.Trash
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
