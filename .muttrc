@@ -12,15 +12,6 @@ set record = +.Archive
 set postponed = +.Drafts
 
 mailboxes ! +. +.Search +.Drafts +.Archive +.Spam +.Trash
-#mailboxes ! + `\
-#for file in ~/.maildir/.*; do \
-#box=$(basename "$file"); \
-#if [ ! "$box" = '.' -a ! "$box" = '..' -a ! "$box" = '.customflags' \
-#   -a ! "$box" = '.subscriptions' -a ! "$box" = '.mbsyncstate' \
-#   -a ! "$box" = '.uidvalidity' -a ! "$box" = '.notmuch' ]; then \
-# echo -n "\"+$box\" "; \
-#fi; \
-#done`
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
