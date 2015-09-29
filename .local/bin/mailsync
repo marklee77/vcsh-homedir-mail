@@ -36,11 +36,12 @@ else
     rm -f ${rundir}/*.error
 fi
 
-notmuch new
+#notmuch new
 
 count=$(cat ${rundir}/count 2>/dev/null)
 
 [[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -lt 20 ] || count=0
+[ "$count" -eq 0 ] || [ "$count" -eq 10 ] && notmuch new
 [ "$count" -eq 0 ] && notmuch compact
 echo -n $((${count}+1)) > ${rundir}/count
 

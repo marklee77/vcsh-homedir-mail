@@ -3,7 +3,7 @@ source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
 set mbox_type = maildir
-#set header_cache = ~/.cache/mutt/
+set header_cache = ~/.cache/mutt/
 set mbox = ~/.maildir
 set folder = ~/.maildir
 set mask = .*
