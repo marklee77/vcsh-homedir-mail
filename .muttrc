@@ -1,19 +1,19 @@
 # appearance
 source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
-# mailbox configuration
-set mbox_type = maildir
 set header_cache = ~/.cache/mutt/
-set mbox = ~/.maildir
+
+# mailbox configuration
 set folder = ~/.maildir
-set mask = .*
 set spoolfile = =
+set mbox = =
+set mbox_type = maildir
 set record = =.Archive
 set postponed = =.Drafts
+#mailboxes ! =.Archive =.Drafts =.Search =.Spam =.Trash
 
-mailboxes ! =INBOX =.Search =.Drafts =.Archive =.Spam =.Trash
-
-macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
+macro index,pager c '<change-folder>?' 'open a different folder'
+#macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
 # index 
 set date_format = '%y-%m-%d'
