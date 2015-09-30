@@ -22,6 +22,7 @@
 !.mutt
 !.mutt/*
 .mutt/aliases
+!.muttprintrc
 !.muttrc
 !.notmuch-config
 !.signature
