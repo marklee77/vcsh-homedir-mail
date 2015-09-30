@@ -1,8 +1,6 @@
 # appearance
 source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
-set header_cache = ~/.cache/mutt/
-
 # mailbox configuration
 set folder = ~/.maildir
 set spoolfile = =
@@ -26,6 +24,7 @@ set mark_old = no
 folder-hook . 'exec collapse-all'
 
 # performance tuning
+set header_cache = ~/.cache/mutt/
 folder-hook . 'set read_inc=10;set write_inc=10'
 folder-hook '=.Archive' 'set read_inc=1000;set write_inc=1000'
 
@@ -50,7 +49,6 @@ hdr_order From Resent-From Reply-To Date From To Cc
 alternative_order text/plain text/enriched text/html
 auto_view text/html 
 set implicit_autoview = yes
-#set display_filter = 'pee "lbdb-fetchaddr -a" cat'
 set markers = no
 macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><enter-command>set wait_key<enter>' 'Follow links with urlscan' 
 
@@ -106,7 +104,7 @@ set user_agent = yes
 # archive and search
 #macro index,pager d '<enter-command>set confirmappend=no<enter><save-message>=.Archive<enter><enter-command>set confirmappend=yes<enter>' 'archive message'
 macro index,pager S '<save-message>=.Spam<enter>' 'message to spam'
-macro index,pager Mi '<copy-message>=<enter>' 'copy to inbox'
+macro index,pager I '<copy-message>!<enter>' 'copy to inbox'
 macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch new<enter><shell-escape>notmuch-mutt -p -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
 
 # movement macros
