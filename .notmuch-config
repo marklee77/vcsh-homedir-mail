@@ -48,7 +48,7 @@ other_email=marklee@fortawesome.org;m.stillwell@imperial.ac.uk;m.stillwell@cranf
 #
 [new]
 tags=
-ignore=.mbsyncstate;.uidvalidity;
+ignore=.mbsyncstate*;.uidvalidity;
 
 # Search configuration
 #
