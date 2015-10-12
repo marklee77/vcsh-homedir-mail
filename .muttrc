@@ -43,6 +43,7 @@ subscribe simgrid-private@lists.gforge.inria.fr
 subscribe infra-songs--wp4@lists.gforge.inria.fr
 subscribe infra-songs--wp8@lists.gforge.inria.fr
 subscribe hp-dev@imperial.ac.uk
+subscribe sereca@imperial.ac.uk
 
 # read options
 hdr_order From Resent-From Reply-To Date From To Cc
