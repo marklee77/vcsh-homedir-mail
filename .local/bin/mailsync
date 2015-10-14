@@ -8,7 +8,7 @@ if mkdir ${lockdir} &> /dev/null; then
     echo "$$" > ${pidfile}
 else
     otherpid=$(cat ${pidfile} 2>/dev/null)
-    othercmd=$(ps --no-headers --format command --pid ${otherpid})
+    othercmd=$(ps --no-headers --format command --pid ${otherpid} 2>/dev/null)
     if [[ "${othercmd}" =~ .*${scriptname}.* ]]; then
         echo "another instance of ${scriptname} is currently running." >&2
         exit 1

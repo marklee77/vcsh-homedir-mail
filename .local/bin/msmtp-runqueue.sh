@@ -8,7 +8,7 @@ if mkdir ${lockdir} &> /dev/null; then
     echo "$$" > ${pidfile}
 else
     otherpid=$(cat ${pidfile} 2>/dev/null)
-    othercmd=$(ps --no-headers --format command --pid ${otherpid})
+    othercmd=$(ps --no-headers --format command --pid ${otherpid} 2>/dev/null)
     if [[ "${othercmd}" =~ .*${scriptname}.* ]]; then
         if [ $(ps --no-headers -C ${scriptname} | wc -l) -ge 10 ]; then
             echo "too many ${scriptname} processes waiting for lock"
