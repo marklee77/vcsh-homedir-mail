@@ -75,6 +75,7 @@ set editor = vim
 set autoedit = yes
 set include = yes
 set mime_forward = ask-yes
+set mime_forward_rest = yes
 set text_flowed = yes
 bind editor <Tab> complete-query
 bind editor ^T complete
