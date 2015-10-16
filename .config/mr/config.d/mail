@@ -1,8 +1,8 @@
 [${XDG_CONFIG_HOME:-$HOME/.config}/vcsh/repo.d/mail.git]
 checkout = vcsh clone https://gitlab.stillwell.me/mark/vcsh-homedir-mail.git mail
-setpush  = vcsh mail set-url --add --push origin git@stillwell.me:mark/vcsh-homedir-mail.git
-           vcsh mail set-url --add --push origin git@github.com:marklee77/vcsh-homedir-mail.git
-           vcsh mail set-url --add --push origin git@bitbucket.org:marklee77/vcsh-homedir-mail.git
+setpush  = vcsh mail remote set-url --add --push origin git@stillwell.me:mark/vcsh-homedir-mail.git
+           vcsh mail remote set-url --add --push origin git@github.com:marklee77/vcsh-homedir-mail.git
+           vcsh mail remote set-url --add --push origin git@bitbucket.org:marklee77/vcsh-homedir-mail.git
 
 [${HOME}/.mutt/mutt-colors-solarized]
 checkout = git clone https://github.com/altercation/mutt-colors-solarized.git
