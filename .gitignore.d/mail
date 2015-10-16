@@ -3,6 +3,9 @@
 !.config/mr
 !.config/mr/config.d
 !.config/mr/config.d/mail
+!.config/supervisord
+!.config/supervisord/config.d
+!.config/supervisord/config.d/mail
 !.gitignore.d
 !.gitignore.d/mail
 !.lbdb
