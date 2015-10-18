@@ -33,7 +33,7 @@ if ! ls *.msmtp >/dev/null 2>/dev/null; then
     exit 0
 fi
 
-mmin="-mmin 5"
+mmin="-mmin +5"
 [ "$1" = "-f" ] && mmin=""
 
 # process all mails
