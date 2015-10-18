@@ -35,7 +35,7 @@ fi
 
 # process all mails
 failcount=0
-find $queuedir -type f -name "*.msmtp" -mmin +5 | while read file; do
+find $queuedir -type f -name "*.msmtp" -mmin ${1:-5} | while read file; do
     echo "*** Sending $file to $(perl -lne 'print $1 if $. == 1 and /-- (.*)$/' $file) ..."
     if perl -ne 'print if $. > 1' $file | msmtp $@ $(head -1 $file); then
         rm -f $file
