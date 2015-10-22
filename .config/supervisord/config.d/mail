@@ -1,3 +1,5 @@
 [program:mailsync]
 command=runinterval 300 mailsync
 autorestart=true
+stopsignal=KILL
+
