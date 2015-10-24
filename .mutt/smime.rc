@@ -23,8 +23,7 @@
 # unset smime_decrypt_use_default_key
 
 # Path to a file or directory with trusted certificates
-set smime_ca_location="~/.smime/ca-bundle.crt"
-#set smime_ca_location=/etc/ssl/certs/ca-certificates.crt
+set smime_ca_location=/etc/ssl/certs/ca-certificates.crt
 
 # Path to where all known certificates go. (must exist!)
 set smime_certificates="~/.smime/certificates"
