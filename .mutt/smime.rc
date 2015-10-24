@@ -16,7 +16,8 @@
 
 # The (default) keyfile for signing/decrypting.  Uncomment the following
 # line and replace the keyid with your own.
-# set smime_default_key="70cb030a.0"
+set smime_default_key="a3313fc6.0"
+set smime_sign_as="a3313fc6.0"
 
 # Uncomment to make mutt ask what key to use when trying to decrypt a message.
 # It will use the default key above (if that was set) else.
