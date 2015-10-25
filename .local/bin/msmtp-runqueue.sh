@@ -55,4 +55,6 @@ find $queuedir -type f -name "*.msmtp" $msmtpargs | while read file; do
     fi
 done
 
+pkill -RTMIN+4 i3blocks
+
 exit $failcount
