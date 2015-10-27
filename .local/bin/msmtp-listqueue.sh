@@ -8,7 +8,8 @@ if ! ls ${queuedir}/*.msmtp >/dev/null 2>/dev/null; then
 fi
 
 for file in ${queuedir}/*.msmtp; do
-    egrep -s --colour -h '(^From:|^To:|^Subject:)' "$file"
+    #egrep -s --colour -h '(^From:|^To:|^Subject:)' "$file"
+    perl -ne 'if (/^\s*$/) { exit; } elsif (/^From:|^To:|^Subject:/) { print; }' < "$file"
     echo " "
 done
 
