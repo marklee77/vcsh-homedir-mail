@@ -1,4 +1,5 @@
 application/pdf;evince %s 2>&1 >/dev/null &;test=[ -n "${DISPLAY}" ];needsterminal
+application/x-pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less; needsterminal
 image/*;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
 text/html;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
 text/html;links -codepage iso-8859-1 -dump %s;copiousoutput
