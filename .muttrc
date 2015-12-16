@@ -87,7 +87,7 @@ my_hdr Attach:
 set alias_file = ~/.mutt/aliases
 set sort_alias = alias
 source $alias_file
-set query_command = 'lbdbq %s'
+set query_command = 'lbdbq.sh %s'
 macro generic,index,pager A '<enter-command>unset wait_key<enter><shell-escape>abook<enter><enter-command>set wait_key<enter>' 'launch abook'
 
 # encryption
