@@ -8,8 +8,7 @@ set mbox = !
 set mbox_type = maildir
 set record = +.Archive
 set postponed = +.Drafts
-#mailboxes ! +.Archive +.Drafts +.Search +.Spam +.Trash
-mailboxes !
+mailboxes ! +.Archive +.Drafts +.Search +.Spam +.Trash
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
@@ -25,7 +24,7 @@ set mark_old = no
 folder-hook . 'exec collapse-all'
 
 # performance tuning
-set header_cache = ~/.cache/mutt/
+#set header_cache = ~/.cache/mutt/
 folder-hook . 'set read_inc=10;set write_inc=10'
 folder-hook '+.Archive' 'set read_inc=1000;set write_inc=1000'
 
