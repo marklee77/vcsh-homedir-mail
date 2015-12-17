@@ -8,7 +8,7 @@ set mbox = =
 set mbox_type = maildir
 set record = =.Archive
 set postponed = =.Drafts
-mailboxes ! =.Archive =.Drafts =.Search =.Spam =.Trash
+mailboxes = =.Archive =.Drafts =.Search =.Spam =.Trash
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
