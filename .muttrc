@@ -3,12 +3,13 @@ source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
 # mailbox configuration
 set folder = ~/.maildir
-set spoolfile = !
+set spoolfile = +
 set mbox = !
 set mbox_type = maildir
-set record = =.Archive
-set postponed = =.Drafts
-mailboxes ! =.Archive =.Drafts =.Search =.Spam =.Trash
+set record = +.Archive
+set postponed = +.Drafts
+#mailboxes ! +.Archive +.Drafts +.Search +.Spam +.Trash
+mailboxes !
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
@@ -26,7 +27,7 @@ folder-hook . 'exec collapse-all'
 # performance tuning
 set header_cache = ~/.cache/mutt/
 folder-hook . 'set read_inc=10;set write_inc=10'
-folder-hook '=.Archive' 'set read_inc=1000;set write_inc=1000'
+folder-hook '+.Archive' 'set read_inc=1000;set write_inc=1000'
 
 # addresses and mailing lists
 alternates mark@stillwell.me marklee@fortawesome.org 
@@ -107,11 +108,10 @@ set envelope_from = yes
 set user_agent = yes
 
 # archive and search
-#macro index,pager d '<enter-command>set confirmappend=no<enter><save-message>=.Archive<enter><enter-command>set confirmappend=yes<enter>' 'archive message'
-macro index,pager S '<save-message>=.Spam<enter>' 'message to spam'
+macro index,pager S '<save-message>+.Spam<enter>' 'message to spam'
 macro index,pager I '<copy-message>!<enter>' 'copy to inbox'
-macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch new<enter><shell-escape>notmuch-mutt -p -r -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
-macro pager <F9> '<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r -o ~/.maildir/.Search thread 3>/dev/null<enter><change-folder-readonly>=.Search<enter><enter-command>set wait_key<enter>' 'notmuch: reconstruct thread'
+macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch new<enter><shell-escape>notmuch-mutt -p -r -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
+macro pager <F9> '<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r -o ~/.maildir/.Search thread 3>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: reconstruct thread'
 
 # movement macros
 macro index,pager gi '<change-folder>+<enter>' 'go to inbox'
