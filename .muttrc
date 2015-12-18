@@ -8,7 +8,8 @@ set mbox = !
 set mbox_type = maildir
 set record = +.Archive
 set postponed = +.Drafts
-mailboxes ! +.Archive +.Drafts +.Search +.Spam +.Trash
+#mailboxes ! +.Archive +.Drafts +.Search +.Spam +.Trash
+mailboxes !
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
@@ -24,7 +25,7 @@ set mark_old = no
 folder-hook . 'exec collapse-all'
 
 # performance tuning
-#set header_cache = ~/.cache/mutt/
+set header_cache = ~/.cache/mutt/
 folder-hook . 'set read_inc=10;set write_inc=10'
 folder-hook '+.Archive' 'set read_inc=1000;set write_inc=1000'
 
@@ -117,6 +118,8 @@ macro index,pager gi '<change-folder>+<enter>' 'go to inbox'
 macro index,pager ga '<change-folder>+.Archive<enter>' 'go to archive'
 macro index,pager gd '<change-folder>+.Drafts<enter>' 'go to drafts'
 macro index,pager gs '<change-folder>+.Search<enter>' 'go to cached search results'
+macro index,pager gS '<change-folder>+.Spam<enter>' 'go to Spam'
+macro index,pager gT '<change-folder>+.Trash<enter>' 'go to Trash'
 
 # printing
 set print_command = 'muttprint'
