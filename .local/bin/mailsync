@@ -41,6 +41,8 @@ else
     rm -f ${rundir}/*.error
 fi
 
+exit 0
+
 epoch=$(date +%s)
 newepoch=$(cat ${rundir}/newepoch 2>/dev/null)
 compactepoch=$(cat ${rundir}/compactepoch 2>/dev/null)
