@@ -1,4 +1,5 @@
 #!/bin/bash
+exit 0
 scriptname="$(basename $0)"
 
 lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var}/${scriptname}.lock"
