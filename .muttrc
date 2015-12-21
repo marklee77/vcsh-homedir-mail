@@ -114,11 +114,9 @@ macro pager <F9> '<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt
 
 # movement macros
 macro index,pager gi '<change-folder>+<enter>' 'go to inbox'
-macro index,pager ga '<change-folder>+.Archive<enter>' 'go to archive'
-macro index,pager gd '<change-folder>+.Drafts<enter>' 'go to drafts'
 macro index,pager gs '<change-folder>+.Search<enter>' 'go to cached search results'
-macro index,pager gS '<change-folder>+.Spam<enter>' 'go to Spam'
-macro index,pager gT '<change-folder>+.Trash<enter>' 'go to Trash'
+macro index,pager gd '<change-folder>+.Drafts<enter>' 'go to drafts'
+macro index,pager ga '<change-folder>+.Archive<enter>' 'go to archive'
 
 # printing
 set print_command = 'muttprint'
