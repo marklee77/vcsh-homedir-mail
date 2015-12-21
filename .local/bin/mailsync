@@ -34,14 +34,12 @@ if nm-online && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
     msmtp-runqueue.sh -m 5 && \
         rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
     if [ $(ssh-add -l | grep .ssh/id_ | wc -l) -gt 0 ]; then
-        mbsync squid-inbox && \
+        mbsync squid && \
             rm -f ${rundir}/mbsync.error || touch ${rundir}/mbsync.error
     fi
 else
     rm -f ${rundir}/*.error
 fi
-
-exit 0
 
 epoch=$(date +%s)
 newepoch=$(cat ${rundir}/newepoch 2>/dev/null)
