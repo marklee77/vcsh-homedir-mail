@@ -15,7 +15,7 @@ macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folde
 # index 
 set date_format = '%y-%m-%d'
 set index_format = '%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s'
-set sort_aux = reverse-last-date-received
+set sort = reverse-date-received
 set strict_threads = yes
 set collapse_unread = yes
 set auto_tag = yes
