@@ -1,7 +1,7 @@
 #!/bin/bash
 scriptname="$(basename $0)"
 
-lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var}/${scriptname}.lock"
+lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/lock}/${scriptname}.lock"
 pidfile="${lockdir}/PID"
 if mkdir ${lockdir} &> /dev/null; then
     trap "rm -rf ${lockdir}" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
