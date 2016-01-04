@@ -43,7 +43,7 @@ done
 shift $(($OPTIND-1))
 
 # enable socks proxy forwarding
-. socksify
+#. socksify
 
 # process all mails
 failcount=0
