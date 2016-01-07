@@ -4,7 +4,7 @@ autorestart=true
 stopsignal=KILL
 
 [program:gcalcli]
-command=gcalcli --calendar "Mark Stillwell" --calendar Work --calendar Family agenda
+command=runinterval 1800 gcalcli --calendar "Mark Stillwell" --calendar Work --calendar Family agenda
 redirect_stderr=true
 autorestart=true
 stopsignal=KILL
