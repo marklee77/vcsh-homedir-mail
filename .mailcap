@@ -1,5 +1,7 @@
+application/ics;gcalcli-import %s;nametemplate=%s.ics
 application/pdf;evince %s 2>&1 >/dev/null &;test=[ -n "${DISPLAY}" ];needsterminal
-application/x-pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less; needsterminal
+application/x-pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less
+application/pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less
 image/*;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
 text/calendar;gcalcli-import %s;nametemplate=%s.ics
 text/html;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
