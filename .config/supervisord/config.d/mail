@@ -4,7 +4,7 @@ autorestart=true
 stopsignal=KILL
 
 [program:gcalcli]
-command=runinterval 1800 gcalcli --calendar "Mark Stillwell" --calendar Work --calendar Family remind 60 "notify-send %s"
+command=runinterval 1800 gcalcli --calendar "Mark Stillwell" --calendar Work --calendar Family remind 60 "notify-send %%s"
 redirect_stderr=true
 autorestart=true
 stopsignal=KILL
