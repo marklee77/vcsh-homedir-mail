@@ -4,6 +4,7 @@ autorestart=true
 stopsignal=KILL
 
 [program:gcalcli]
-command=runinterval 1800 /home/mark/.pyenv/shims/gcalcli --calendar "Mark Stillwell" --calendar Work --calendar Family remind 60 "notify-send -a gcalcli %s"
+command=gcalcli --calendar "Mark Stillwell" --calendar Work --calendar Family agenda
+redirect_stderr=true
 autorestart=true
 stopsignal=KILL
