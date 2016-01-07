@@ -21,7 +21,8 @@
 # - m_evolution  search in the Ximan Evolution addressbook.
 # - m_vcf        search a vcard (according to RFC2426) file.
 
-METHODS="m_inmail m_muttalias m_gpg m_abook"
+#METHODS="m_inmail m_muttalias m_gpg m_abook"
+METHODS="m_gpg m_inmail m_muttalias"
 
 # Set MUTTALIAS_FILES below to list of files in MUTT_DIRECTORY that
 # contain mutt aliases. File names without leading slash will have
