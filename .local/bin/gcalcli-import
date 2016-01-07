@@ -1,0 +1,23 @@
+#!/bin/bash
+[ -f "$1" ] || exit 0
+
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="Backtitle here"
+TITLE="Import Event"
+MENU="Choose one of the following calenders:"
+
+OPTIONS=(1 "Mark Stillwell"
+         2 "Work"
+         3 "Family")
+
+CHOICE=$(dialog --clear \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+[ -n "${CHOICE}" ] && gcalcli --calendar "${OPTIONS[$((($CHOICE-1)*2+1))]}" -v import $1

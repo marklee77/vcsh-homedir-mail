@@ -19,6 +19,7 @@
 !.local/bin/lbdb-*.sh
 !.local/bin/sendmail.sh
 !.local/bin/lbdbq.sh
+!.local/bin/gcalcli-import
 !.mailcap
 !.mairixrc
 !.mbsyncrc
