@@ -4,7 +4,7 @@ FILE=$2
 
 echo
 
-timeout 0.5s /bin/bash 2>/dev/null <<EOF
+timeout 0.1s /bin/bash 2>/dev/null <<EOF
 iconv -s -f "${CHARSET}" -t utf-8 "${FILE}" | \
     pandoc -f html -t markdown-raw_html | \
     perl -pe 's/\\\\$//'
