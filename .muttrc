@@ -108,7 +108,7 @@ set user_agent = yes
 # archive and search
 macro index,pager S '<save-message>+.Spam<enter>' 'message to spam'
 macro index,pager I '<copy-message>!<enter>' 'copy to inbox'
-macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch new<enter><shell-escape>notmuch-mutt -p -r -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
+macro index,pager <F8> '<enter-command>unset wait_key<enter><shell-escape>notmuch new 2>/dev/null || true<enter><shell-escape>notmuch-mutt -p -r -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
 macro pager <F9> '<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r -o ~/.maildir/.Search thread 3>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: reconstruct thread'
 
 # movement macros
