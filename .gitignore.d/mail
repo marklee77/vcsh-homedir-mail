@@ -20,6 +20,7 @@
 !.local/bin/sendmail.sh
 !.local/bin/lbdbq.sh
 !.local/bin/gcalcli-import
+!.local/bin/mailcap-display-html
 !.mailcap
 !.mairixrc
 !.mbsyncrc

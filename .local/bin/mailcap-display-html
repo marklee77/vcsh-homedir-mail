@@ -1,0 +1,13 @@
+#!/bin/bash
+CHARSET=$1
+FILE=$2
+
+timeout 0.5s /bin/bash <<EOF
+iconv -s -f "${CHARSET}" -t utf-8 "${FILE}" | \
+    pandoc -f html -t markdown-raw_html | \
+    perl -pe 's/\\\\$//'
+EOF
+
+if [ 0 -ne $? ]; then
+    w3m -T text/html -I "${CHARSET}" -O UTF-8 "${FILE}" -dump
+fi
