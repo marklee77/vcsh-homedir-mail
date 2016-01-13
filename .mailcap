@@ -1,10 +1,9 @@
 application/ics;gcalcli-import %s;nametemplate=%s.ics
 application/pdf;evince %s 2>&1 >/dev/null &;test=[ -n "${DISPLAY}" ];needsterminal
+application/pdf;pdfinfo %s 2>/dev/null;copiousoutput
 application/x-pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less
 application/pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less
 image/*;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
-text/calendar;gcalcli-import %s;nametemplate=%s.ics
+text/calendar;gcalcli-import %s;nametemplate=%s.ics;needsterminal
 text/html;firefox %s;test=[ -n "${DISPLAY}" ];needsterminal
 text/html;mailcap-display-html %{charset} %s;copiousoutput
-#text/html;w3m -T %t -I %{charset} -O 'UTF-8' -dump %s;copiousoutput
-#text/html;iconv -f %{charset} -t utf-8 %s | pandoc -f html -t markdown-raw_html | perl -pe 's/\\\\$//';copiousoutput
