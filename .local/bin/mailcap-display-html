@@ -4,11 +4,11 @@ FILE=$2
 
 echo
 
-timeout 0.1s /bin/bash 2>/dev/null <<EOF
+timeout 0.1s /bin/bash <<EOF
 iconv -s -f "${CHARSET}" -t utf-8 "${FILE}" | \
-    pandoc -f html -t markdown-raw_html 
+    pandoc -f html -t markdown-raw_html | \
+    perl -pe 's/\\\\$//;s/\\\\</</g;s/\\\\>/>/g;'
 EOF
-#| perl -pe 's/\\\\$//;s/\\\\</</g;s/\\\\>/>/g;' <<EOF
 
 if [ 0 -ne $? ]; then
     w3m -T text/html -I "${CHARSET}" -O UTF-8 "${FILE}" -dump
