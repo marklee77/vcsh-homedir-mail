@@ -4,10 +4,9 @@ FILE=$2
 
 echo
 
-timeout 0.1s /bin/bash <<EOF
+timeout 10s /bin/bash | perl -pe 's/\\\\$//;s/\\\\</</g;s/\\\\>/>/g;' <<EOF
 iconv -s -f "${CHARSET}" -t utf-8 "${FILE}" | \
-    pandoc -f html -t markdown-raw_html | \
-    perl -pe 's/\\\\$//;s/\\\\</</g;s/\\\\>/>/g;'
+    pandoc -f html -t markdown-raw_html 2>/dev/null
 EOF
 
 echo $?
