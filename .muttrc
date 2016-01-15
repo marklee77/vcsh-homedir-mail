@@ -45,9 +45,8 @@ subscribe hp-dev@imperial.ac.uk
 subscribe sereca@imperial.ac.uk
 
 # read options
-#unignore x-virus-status: x-spam-status:
-hdr_order From Resent-From Reply-To Date From To Cc
-alternative_order text/html text/plain
+hdr_order From Resent-From Reply-To Date From To Cc User-Agent
+alternative_order text/plain text/html
 auto_view text/html application/pdf
 set implicit_autoview = yes
 set markers = no
