@@ -4,12 +4,21 @@ FILE=$2
 
 echo
 
-timeout 0.5s /bin/bash <<EOF
+RUN_BROWSER=no
+
+if grep -iq "<table" "${FILE}"; then
+    RUN_BROWSER=yes
+else
+timeout 1s /bin/bash <<EOF
 iconv -s -f "${CHARSET}" -t utf-8 "${FILE}" | \
     pandoc -f html -t markdown-raw_html-native_divs-native_spans | \
     perl -pe 's/\\\\$//;s/\\\\</</g;s/\\\\>/>/g;s/&.*?;//g'
 EOF
-
 if [ 0 -ne $? ]; then
+    RUN_BROWSER=yes
+fi
+fi
+
+if [ "${RUN_BROWSER}" = "yes" ]; then
     w3m -T text/html -I "${CHARSET}" -O UTF-8 "${FILE}" -dump
 fi
