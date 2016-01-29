@@ -115,6 +115,7 @@ macro index,pager gi '<change-folder>+<enter>' 'go to inbox'
 macro index,pager gs '<change-folder>+.Search<enter>' 'go to cached search results'
 macro index,pager gd '<change-folder>+.Drafts<enter>' 'go to drafts'
 macro index,pager ga '<change-folder>+.Archive<enter>' 'go to archive'
+macro index,pager gt '<change-folder>+.Trash<enter>' 'go to trash'
 
 # printing
 set print_command = 'muttprint'
