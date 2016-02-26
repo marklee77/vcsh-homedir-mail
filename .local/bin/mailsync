@@ -1,6 +1,8 @@
 #!/bin/bash
 scriptname="$(basename $0)"
 
+exit 0
+
 lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/lock}/${scriptname}.lock"
 pidfile="${lockdir}/PID"
 if mkdir ${lockdir} &> /dev/null; then
