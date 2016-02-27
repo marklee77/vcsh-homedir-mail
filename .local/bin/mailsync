@@ -1,8 +1,6 @@
 #!/bin/bash
 scriptname="$(basename $0)"
 
-exit 0
-
 lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/lock}/${scriptname}.lock"
 pidfile="${lockdir}/PID"
 if mkdir ${lockdir} &> /dev/null; then
@@ -34,7 +32,7 @@ pkill -RTMIN+4 i3blocks
 
 mbox2maildir.py /var/mail/$USER ~/.maildir ~/.maildir/.Archive
 
-if nm-online -q && ping -c 1 8.8.8.8 2>&1 >/dev/null; then
+if ping -c 1 8.8.8.8 2>&1 >/dev/null; then
     msmtp-runqueue.sh -m 5 && \
         rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
     if [ $(ssh-add -l | grep .ssh/id_ | wc -l) -gt 0 ]; then
