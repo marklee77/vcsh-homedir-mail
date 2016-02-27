@@ -9,8 +9,8 @@ TITLE="Import Event"
 MENU="Choose one of the following calenders:"
 
 OPTIONS=(1 "Mark Stillwell"
-         2 "Work"
-         3 "Family")
+         2 "Family"
+         3 "mark.stillwell@meraki.net")
 
 CHOICE=$(dialog --clear \
                 --title "$TITLE" \
