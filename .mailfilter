@@ -1,0 +1,2 @@
+DEFAULT=.maildir
+cc .maildir/.Archive

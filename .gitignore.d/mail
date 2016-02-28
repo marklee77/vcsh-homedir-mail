@@ -6,6 +6,7 @@
 !.config/supervisord
 !.config/supervisord/config.d
 !.config/supervisord/config.d/mail
+!.forward
 !.gitignore.d
 !.gitignore.d/mail
 !.lbdb
@@ -22,7 +23,7 @@
 !.local/bin/gcalcli-import
 !.local/bin/mailcap-display-html
 !.mailcap
-!.mairixrc
+!.mailfilter
 !.mbsyncrc
 !.msmtprc
 !.mutt
@@ -32,6 +33,4 @@
 !.muttrc
 !.notmuch-config
 !.signature
-!.smd
-!.smd/config.*
 !.urlview

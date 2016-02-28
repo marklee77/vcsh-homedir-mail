@@ -1,5 +1,0 @@
-SERVERNAME=squid
-CLIENTNAME=localhost-squid
-MAILBOX=".maildir/"
-EXCLUDE_LOCAL=".maildir/.Search"
-EXCLUDE_REMOTE=".maildir/.Sent"
