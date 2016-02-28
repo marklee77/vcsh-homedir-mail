@@ -29,11 +29,14 @@ folder-hook '+.Archive' 'set read_inc=1000;set write_inc=1000'
 
 # addresses and mailing lists
 alternates mark@stillwell.me marklee@fortawesome.org 
+alternates mstillwe@cisco.com 
+alternates marklee@meraki.com mark.stillwell@meraki.com marklee@meraki.net mark.stillwell@meraki.net
 alternates m.stillwell@imperial.ac.uk m.stillwell@cranfield.ac.uk
 alternates mark.stillwell@inrialpes.fr mark.stillwell@ens-lyon.fr 
+alternates stillwellml@state.gov
 alternates markls@gforge.inria.fr
-alternates markls@hawaii.edu marklee@ufl.edu
-alternates marklee@alumni.ufl.edu marklee@alumni.unf.edu
+alternates markls@hawaii.edu marklee@alumni.unf.edu
+alternates marklee@ufl.edu marklee@alumni.ufl.edu 
 alternates mark_lee_stillwell@yahoo.com mark_lee_stillwell@hotmail.com
 alternates mark.lee.stillwell@gmail.com markls1977@gmail.com
 subscribe simgrid-user@lists.gforge.inria.fr
