@@ -10,7 +10,7 @@
 !.gitignore.d
 !.gitignore.d/mail
 !.lbdb
-!.lbdb/*
+!.lbdb/m_muttalias
 .lbdb/*.bak
 !.lbdbrc
 !.local
