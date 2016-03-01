@@ -5,5 +5,5 @@ application/x-pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_cer
 application/pkcs7-signature;openssl pkcs7 -in %s -inform der -noout -print_certs -text | less
 image/*;open %s;test=[ -n "${DISPLAY}" ];needsterminal
 text/calendar;gcalcli-import %s;nametemplate=%s.ics;needsterminal
-text/html;open %s;test=[ -n "${DISPLAY}" ];needsterminal
+text/html;open %s;nametemplate=%s.html;test=[ -n "${DISPLAY}" ];needsterminal
 text/html;mailcap-display-html %{charset} %s;copiousoutput
