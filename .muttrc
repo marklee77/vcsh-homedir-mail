@@ -49,7 +49,7 @@ subscribe sereca@imperial.ac.uk
 
 # read options
 hdr_order From Resent-From Reply-To Date From To Cc User-Agent
-alternative_order text/html text/plain
+alternative_order text/plain text/html
 auto_view text/html application/pdf
 set implicit_autoview = yes
 set markers = no
