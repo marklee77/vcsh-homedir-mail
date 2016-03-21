@@ -18,13 +18,6 @@ else
     exec "$0" "$@"
 fi
 
-logdir="${HOME}/.local/var/log"
-mkdir -p ${logdir}
-
-logfile="${logdir}/${scriptname}.log"
-exec 1>${logfile}
-exec 2>&1
-
 rundir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/run}/${scriptname}"
 mkdir -p ${rundir}
 
