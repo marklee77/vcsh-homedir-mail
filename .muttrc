@@ -12,7 +12,7 @@ mailboxes ! +.Search +.Drafts +.Spam
 
 macro index,pager c '<change-folder>?<toggle-mailboxes>' 'open a different folder'
 
-# index 
+# index
 set date_format = '%y-%m-%d'
 set index_format = '%5C %Z %d %?M?(#%03M)&(%4c)? %-20.20L %s'
 set sort = reverse-date-received
@@ -28,24 +28,8 @@ folder-hook . 'set read_inc=10;set write_inc=10'
 folder-hook '+.Archive' 'set read_inc=1000;set write_inc=1000'
 
 # addresses and mailing lists
-alternates mark@stillwell.me marklee@fortawesome.org 
-alternates mstillwe@cisco.com 
-alternates marklee@meraki.com mark.stillwell@meraki.com marklee@meraki.net mark.stillwell@meraki.net
-alternates m.stillwell@imperial.ac.uk m.stillwell@cranfield.ac.uk
-alternates mark.stillwell@inrialpes.fr mark.stillwell@ens-lyon.fr 
-alternates stillwellml@state.gov
-alternates markls@gforge.inria.fr
-alternates markls@hawaii.edu marklee@alumni.unf.edu
-alternates marklee@ufl.edu marklee@alumni.ufl.edu 
-alternates mark_lee_stillwell@yahoo.com mark_lee_stillwell@hotmail.com
-alternates mark.lee.stillwell@gmail.com markls1977@gmail.com
-subscribe simgrid-user@lists.gforge.inria.fr
-subscribe simgrid-devel@lists.gforge.inria.fr
-subscribe simgrid-private@lists.gforge.inria.fr
-subscribe infra-songs--wp4@lists.gforge.inria.fr
-subscribe infra-songs--wp8@lists.gforge.inria.fr
-subscribe hp-dev@imperial.ac.uk
-subscribe sereca@imperial.ac.uk
+source ~/.mutt/alternates
+source ~/.mutt/subscribe
 
 # read options
 hdr_order From Resent-From Reply-To Date From To Cc User-Agent
@@ -59,16 +43,7 @@ macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><
 bind index,pager R group-reply
 
 # multi-account
-source ~/.mutt/accounts/stillwell.rc
-macro index,pager m '<enter-command>source ~/.mutt/accounts/stillwell.rc<enter><mail>'
-reply-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
-reply-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
-reply-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
-reply-hook '~f .ac.uk' 'source ~/.mutt/accounts/imperial.rc'
-message-hook '~t .@stillwell.me' 'source ~/.mutt/accounts/stillwell.rc'
-message-hook '~t marklee@fortawesome.org' 'source ~/.mutt/accounts/fortawesome.rc'
-message-hook '~t m.stillwell@imperial.ac.uk' 'source ~/.mutt/accounts/imperial.rc'
-message-hook '~f .ac.uk' 'source ~/.mutt/accounts/imperial.rc'
+source ~/.mutt/accounthooks
 
 # compose options
 set edit_headers = yes
