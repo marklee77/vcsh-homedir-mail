@@ -28,7 +28,10 @@
 !.msmtprc
 !.mutt
 !.mutt/*
+.mutt/accounthooks
 .mutt/aliases
+.mutt/alternates
+.mutt/subscribe
 !.muttprintrc
 !.muttrc
 !.notmuch-config
