@@ -23,7 +23,7 @@ mkdir -p ${rundir}
 
 pkill -RTMIN+4 i3blocks
 
-if true || ping -c 1 squid.stillwell.me 2>&1 >/dev/null; then
+if ping -c 1 squid.stillwell.me 2>&1 >/dev/null; then
     msmtp-runqueue.sh -m 5 && \
         rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
     if [ $(ssh-add -l | grep .ssh/id_ | wc -l) -gt 0 ]; then
