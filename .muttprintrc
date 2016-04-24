@@ -6,7 +6,7 @@
 # Here you can configure your printer
 # To print in a file, use the following entry:
 # PRINTER="TO_FILE:/home/berwal/test.ps"
-PRINTER="TO_FILE:/home/marklee/mutt.ps"
+#PRINTER="TO_FILE:/home/marklee/mutt.ps"
 
 #
 # Here you can set the print command
@@ -15,7 +15,8 @@ PRINTER="TO_FILE:/home/marklee/mutt.ps"
 # CUPS: Either "CUPS" or an arbitrary command which
 # contains $CUPS_OPTIONS which is replaced by the
 # options used for CUPS
-PRINT_COMMAND="lpr -P$PRINTER"
+#PRINT_COMMAND="lpr -P$PRINTER"
+PRINT_COMMAND="ps2pdf - ~/mutt.pdf"
 
 #
 # Here you can set the path to the penguin image
