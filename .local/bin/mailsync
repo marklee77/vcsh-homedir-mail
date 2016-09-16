@@ -23,10 +23,9 @@ mkdir -p ${rundir}
 
 pkill -RTMIN+4 i3blocks
 
-# fixme: do netcat and look for msmtp over ssh
 if ping -c 1 squid.stillwell.me >/dev/null 2>&1; then
-    msmtp-runqueue.sh -m 5 && \
-        rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
+    #msmtp-runqueue.sh -m 5 && \
+    #    rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
     if [ $(ssh-add -l | grep .ssh/id_ | wc -l) -gt 0 ]; then
         mbsync squid && \
             rm -f ${rundir}/mbsync.error || touch ${rundir}/mbsync.error

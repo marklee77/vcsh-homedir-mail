@@ -42,9 +42,6 @@ while getopts m: opt; do
 done
 shift $(($OPTIND-1))
 
-# enable socks proxy forwarding
-#. socksify
-
 # process all mails
 failcount=0
 find $queuedir -type f -name "*.msmtp" $msmtpargs | while read file; do
