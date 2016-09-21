@@ -37,7 +37,7 @@ alternative_order text/plain text/html
 auto_view text/html application/pdf
 set implicit_autoview = yes
 set markers = no
-macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><enter-command>set wait_key<enter>' 'Follow links with urlscan' 
+macro pager \cb '<enter-command>unset wait_key<enter><pipe-entry>urlscan<enter><enter-command>set wait_key<enter>' 'Follow links with urlscan'
 
 # key bindings
 bind index,pager R group-reply
