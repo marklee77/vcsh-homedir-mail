@@ -86,7 +86,7 @@ set user_agent = yes
 macro index,pager S '<save-message>+.Spam<enter>' 'message to spam'
 macro index,pager I '<copy-message>!<enter>' 'copy to inbox'
 macro index,pager \cs '<enter-command>unset wait_key<enter><shell-escape>notmuch new 2>/dev/null || true<enter><shell-escape>notmuch-mutt -p -r -o ~/.maildir/.Search search 2>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: search mail'
-macro pager \ct '<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r -o ~/.maildir/.Search thread 3>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: reconstruct thread'
+macro pager \ct '<enter-command>unset wait_key<enter><shell-escape>notmuch new 2>/dev/null || true<enter><pipe-message>notmuch-mutt -r -o ~/.maildir/.Search thread 3>/dev/null<enter><change-folder-readonly>+.Search<enter><enter-command>set wait_key<enter>' 'notmuch: reconstruct thread'
 
 # movement macros
 macro index,pager gi '<change-folder>+<enter>' 'go to inbox'
