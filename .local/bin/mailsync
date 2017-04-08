@@ -1,4 +1,6 @@
 #!/bin/bash
+unset LD_LIBRARY_PATH
+
 scriptname="$(basename $0)"
 
 lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/lock}/${scriptname}.lock"
