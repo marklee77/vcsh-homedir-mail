@@ -2,16 +2,15 @@
 unset LD_LIBRARY_PATH
 
 scriptname="$(basename "${BASH_SOURCE[0]}")"
+rundir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/run}/${scriptname}"
+mkdir -p "${rundir}"
 
 exec 200<"$(readlink -f "${BASH_SOURCE[0]}")"
-if ! flock -n 200; then
+if ! flock -n 200 || ! echo "$$" > "${rundir}/PID"; then
     echo "another instance of the ${scriptname} is currently running..." >&2
     exit 1
 fi
 trap "flock -u 200" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
-
-rundir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/run}/${scriptname}"
-mkdir -p "${rundir}"
 
 pkill -RTMIN+4 i3blocks
 
@@ -45,7 +44,5 @@ if [[ ! "$compactepoch" =~ ^[0-9]+$ ]] || [ "$((epoch - compactepoch))" -gt 8640
     notmuch compact
     echo "$epoch" > "${rundir}/compactepoch"
 fi
-
-echo "$((epoch - newepoch)) $((epoch - compactepoch))"
 
 exit 0
