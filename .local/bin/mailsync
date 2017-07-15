@@ -21,26 +21,31 @@ if ping -c 1 squid.stillwell.me >/dev/null 2>&1; then
     else
         touch "${rundir}/msmtp.error"
     fi
-    if [ "$(ssh-add -l | grep .ssh/id_ | wc -l)" -gt 0 ]; then
-        mbsync squid && \
-            rm -f ${rundir}/mbsync.error || touch ${rundir}/mbsync.error
+    if [ "$(ssh-add -l | grep -c .ssh/id_)" -gt 0 ]; then
+        if mbsync squid; then
+            rm -f "${rundir}/mbsync.error"
+        else
+            touch "${rundir}/mbsync.error"
+        fi
     fi
 else
-    rm -f ${rundir}/*.error
+    rm -f "${rundir}/*.error"
 fi
 
 epoch=$(date +%s)
-newepoch=$(cat ${rundir}/newepoch 2>/dev/null)
-compactepoch=$(cat ${rundir}/compactepoch 2>/dev/null)
+newepoch=$(cat "${rundir}/newepoch" 2>/dev/null)
+compactepoch=$(cat "${rundir}/compactepoch" 2>/dev/null)
 
-if [[ ! "$newepoch" =~ ^[0-9]+$ ]] || [ "$(($epoch - $newepoch))" -gt 14400 ]; then
+if [[ ! "$newepoch" =~ ^[0-9]+$ ]] || [ "$((epoch - newepoch))" -gt 14400 ]; then
     notmuch new
-    echo $epoch > ${rundir}/newepoch
+    echo "$epoch" > "${rundir}/newepoch"
 fi
 
-if [[ ! "$compactepoch" =~ ^[0-9]+$ ]] || [ "$(($epoch - $compactepoch))" -gt 86400 ]; then
+if [[ ! "$compactepoch" =~ ^[0-9]+$ ]] || [ "$((epoch - compactepoch))" -gt 86400 ]; then
     notmuch compact
-    echo $epoch > ${rundir}/compactepoch
+    echo "$epoch" > "${rundir}/compactepoch"
 fi
+
+echo "$((epoch - newepoch)) $((epoch - compactepoch))"
 
 exit 0
