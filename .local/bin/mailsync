@@ -10,7 +10,7 @@ if ! flock -n 200 || ! echo "$$" > "${rundir}/PID"; then
     echo "another instance of the ${scriptname} is currently running..." >&2
     exit 1
 fi
-trap "flock -u 200" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+trap 'flock -u 200 && rm -f "${rundir}/PID"' EXIT SIGHUP SIGINT SIGQUIT SIGTERM
 
 pkill -RTMIN+4 i3blocks
 
