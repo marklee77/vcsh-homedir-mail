@@ -1,34 +1,27 @@
 #!/bin/bash
 unset LD_LIBRARY_PATH
 
-scriptname="$(basename $0)"
+scriptname="$(basename "${BASH_SOURCE[0]}")"
 
-lockdir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/lock}/${scriptname}.lock"
-pidfile="${lockdir}/PID"
-if mkdir ${lockdir} &> /dev/null; then
-    trap "rm -rf ${lockdir}; pkill -RTMIN+4 i3blocks; exit 0" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
-    echo "$$" > ${pidfile}
-else
-    otherpid=$(cat ${pidfile} 2>/dev/null)
-    othercmd=$(ps --no-headers --format command --pid ${otherpid} 2>/dev/null)
-    if [[ "${othercmd}" =~ .*${scriptname}.* ]]; then
-        echo "another instance of ${scriptname} is currently running." >&2
-        exit 1
-    fi
-    # lock is stale, remove and try again...
-    rm -rf ${lockdir}
-    exec "$0" "$@"
+exec 200<"$(readlink -f "${BASH_SOURCE[0]}")"
+if ! flock -n 200; then
+    echo "another instance of the ${scriptname} is currently running..." >&2
+    exit 1
 fi
+trap "flock -u 200" EXIT SIGHUP SIGINT SIGQUIT SIGTERM
 
 rundir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/run}/${scriptname}"
-mkdir -p ${rundir}
+mkdir -p "${rundir}"
 
 pkill -RTMIN+4 i3blocks
 
 if ping -c 1 squid.stillwell.me >/dev/null 2>&1; then
-    msmtp-runqueue.sh -m 5 && \
-        rm -f ${rundir}/msmtp.error || touch ${rundir}/msmtp.error
-    if [ $(ssh-add -l | grep .ssh/id_ | wc -l) -gt 0 ]; then
+    if msmtp-runqueue.sh -m 5; then
+        rm -f "${rundir}/msmtp.error"
+    else
+        touch "${rundir}/msmtp.error"
+    fi
+    if [ "$(ssh-add -l | grep .ssh/id_ | wc -l)" -gt 0 ]; then
         mbsync squid && \
             rm -f ${rundir}/mbsync.error || touch ${rundir}/mbsync.error
     fi
