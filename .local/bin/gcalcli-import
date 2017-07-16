@@ -20,4 +20,4 @@ CHOICE=$(dialog --clear \
                 2>&1 >/dev/tty)
 
 clear
-[ -n "${CHOICE}" ] && gcalcli --calendar "${OPTIONS[$((($CHOICE-1)*2+1))]}" -v import $1
+[ -n "${CHOICE}" ] && gcalcli --calendar "${OPTIONS[$((($CHOICE-1)*2+1))]}" -v import "$1"
