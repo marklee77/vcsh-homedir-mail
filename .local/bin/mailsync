@@ -31,6 +31,8 @@ else
     rm -f "${rundir}/*.error"
 fi
 
+pkill -RTMIN+4 i3blocks
+
 epoch=$(date +%s)
 newepoch=$(cat "${rundir}/newepoch" 2>/dev/null)
 compactepoch=$(cat "${rundir}/compactepoch" 2>/dev/null)
