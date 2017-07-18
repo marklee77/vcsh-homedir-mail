@@ -22,7 +22,7 @@ mkdir -p "${queuedir}"
 cd "${queuedir}" || exit 1
 
 if ! find "${queuedir}" -name '*.msmtp' | read -r; then
-    echo "No mails in $queuedir"
+    echo "No messages in ${queuedir}"
     exit 0
 fi
 
