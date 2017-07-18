@@ -12,26 +12,25 @@ fi
 mkdir -p "$(dirname "${emailfile}")"
 touch "${emailfile}"
 
-headers=$(reformail -X from: -X to: -X cc: -X bcc: -X date:)
+headers="$(reformail -X from: -X to: -X cc: -X bcc: -X date:)"
 
-msgdate=$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M" \
-          2>/dev/null)
-encoding=$(file -bi - <<< "$headers" | perl -ne 'print $1 if /charset=(.*)/')
-reencoded_headers=$(iconv -f $encoding -t utf-8 <<< "$headers" 2>/dev/null) && \
-    headers=$reencoded_headers
+msgdate="$(date -d "$(reformail -x date: <<< "$headers")" +"%Y-%m-%d %H:%M" 2>/dev/null)"
+encoding="$(file -bi - <<< "${headers}" | perl -ne 'print $1 if /charset=(.*)/')"
+reencoded_headers="$(iconv -f "${encoding}" -t utf-8 <<< "${headers}" 2>/dev/null)"
+headers="${reencoded_headers}"
 
-$fetchaddr -c utf-8 <<< "$headers" | while IFS=$'\t' read -a fields; do
+"${fetchaddr}" -c utf-8 <<< "${headers}" | while IFS=$'\t' read -r -a fields; do
 
-    addr=${fields[0]//\'}
-    name=${fields[@]:1:$((${#fields[@]}-2))}
-    date=${fields[-1]}
+    addr="${fields[0]//\'}"
+    name="${fields[*]:1:$((${#fields[@]}-2))}"
+    date="${fields[-1]}"
 
     # lowercase addr
-    addr=${addr,,}
+    addr="${addr,,}"
 
-    [ -n "$msgdate" ] && date=$msgdate
+    [ -n "${msgdate}" ] && date="${msgdate}"
 
-    datestamp=$(date -d "$date" +%s)
+    datestamp="$(date -d "${date}" +%s)"
 
     prevdate=$(perl -lane "print \"\$F[-2] \$F[-1]\" if \$F[0] eq '$addr'" \
                $emailfile | tail -1)
