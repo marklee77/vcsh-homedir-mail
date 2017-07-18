@@ -38,10 +38,10 @@ shift "$((OPTIND-1))"
 # process all mails
 failcount=0
 while read -r file; do
-    echo "*** Sending $file to $(perl -lne 'print $1 if $. == 1 and /-- (.*)$/' "${file}") ..."
-    if perl -ne 'print if $. > 1' "${file}" | msmtp $(head -1 "${file}") "$@"; then
+    echo "*** Sending ${file} to $(perl -lne 'print $1 if $. == 1 and /-- (.*)$/' "${file}") ..."
+    if tail -n +2 "${file}" | msmtp $(head -1 "${file}") "$@"; then
         rm -f "${file}"
-        echo "$file sent successfully"
+        echo "${file} sent successfully"
     else
         echo "FAILURE"
         failcount="$((failcount+1))"
