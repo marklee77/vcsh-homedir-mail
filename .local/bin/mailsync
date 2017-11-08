@@ -24,7 +24,7 @@ if ping -c 1 squid.stillwell.me >/dev/null 2>&1; then
     else
         touch "${rundir}/msmtp.error"
     fi
-    if [ "$(ssh-add -l | grep -c .ssh/id_)" -gt 0 ]; then
+    if [ "$(ssh-add -l | wc -l)" -gt 0 ]; then
         if mbsync squid; then
             rm -f "${rundir}/mbsync.error"
         else
