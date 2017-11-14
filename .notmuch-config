@@ -31,7 +31,7 @@ path=/home/marklee/.maildir/.Archive
 [user]
 name=Mark Stillwell
 primary_email=mark@stillwell.me
-other_email=marklee@fortawesome.org;m.stillwell@imperial.ac.uk;m.stillwell@cranfield.ac.uk;mark.stillwell@ens-lyon.fr;markls@hawaii.edu;mark_lee_stillwell@yahoo.com;markls1977@gmail.com;mark.lee.stillwell@gmail.com;stillwellml@state.gov;mstillwe@cisco.com;marklee@meraki.com;mark.stillwell@meraki.com;marklee@meraki.net;mark.stillwell@meraki.net;mark.stillwell@inrialpes.fr;markls@gforge.inria.fr;marklee@alumni.unf.edu;marklee@ufl.edu;marklee@alumni.ufl.edu;mark_lee_stillwell@hotmail.com
+other_email=marklee@fortawesome.org;m.stillwell@imperial.ac.uk;m.stillwell@cranfield.ac.uk;mark.stillwell@ens-lyon.fr;markls@hawaii.edu;mark_lee_stillwell@yahoo.com;markls1977@gmail.com;mark.lee.stillwell@gmail.com;stillwellml@state.gov;mstillwe@cisco.com;marklee@meraki.com;mark.stillwell@meraki.com;marklee@meraki.net;mark.stillwell@meraki.net;mark.stillwell@inrialpes.fr;markls@gforge.inria.fr;marklee@alumni.unf.edu;marklee@ufl.edu;marklee@alumni.ufl.edu;mark_lee_stillwell@hotmail.com;mark.stillwell@shazam.com
 
 # Configuration for "notmuch new"
 #
