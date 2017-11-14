@@ -1,6 +1,4 @@
 #!/bin/bash
-unset LD_LIBRARY_PATH
-
 scriptname="$(basename "${BASH_SOURCE[0]}")"
 rundir="${XDG_RUNTIME_DIR:-${HOME}/.local/var/run}/${scriptname}"
 pidfile="${rundir}/PID"
